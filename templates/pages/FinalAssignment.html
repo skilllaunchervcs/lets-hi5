@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Let's Hi5!</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/FinalAssignment.css')}}">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="pages/FinalAssignment.html"><img style="height:40px" src="static/img/Hi5logo.png"></a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+             <form class="form-inline" action="#">
+             <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search">
+              </form>
+            </li>
+          </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li><pre class=form-inline>
+            <a style="color:white; text-decoration: none!important;" title="Food & Drinks" href="CategoryPage.html"><br/><i class="fas fa-lg fa-utensils" style="font-size: 1.5em; padding-right:5px;"></i> </a>  
+            <a style="color:white; text-decoration: none!important;" title="DIY and Crafts" href="CategoryPage.html"><br/><i class="fas fa-lg fa-cut" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+            <a style="color:white; text-decoration: none!important;" title="Home Decor" href="CategoryPage.html"><br/><i class="fas fa-lg fa-home" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="Fashion" href="CategoryPage.html"><br/><i class="fas fa-lg fa-tshirt" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="Quotes" href="CategoryPage.html"><br/><i class="fas fa-lg fa-quote-right" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+            <a style="color:white; text-decoration: none!important;" title="Health and Fitness" href="CategoryPage.html"><br/><i class="fas fa-lg fa-dumbbell" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="Humor" href="CategoryPage.html"><br/><i class="fas fa-lg fa-smile" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+            <a style="color:white; text-decoration: none!important;" title="Travel" href="CategoryPage.html"><br/><i class="fas fa-lg fa-helicopter" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+			<a style="color:white; text-decoration: none!important;" title="Video Games" href="CategoryPage.html"><br/><i class="fas fa-lg fa-gamepad" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            </pre>
+             </li>
+            <li>
+              <a style="color:white;" href="pages/chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i> Messeges</a>  
+            </li>
+			<li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white; padding-top: 16px"> <i class="fas fa-user"></i> My Account</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" class="btn btn-default" href="pages/YourProfile.html">Profile</a>
+        <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#help">Help?</a>
+        <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#about">About</a>
+        <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#logout">Logout</a>
+      </div>
+      </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!--Help??-->
+<div class="modal" id="help">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">HELP?</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        How may we help you?<br>
+        Please drop your queries at: xyz@abc.com
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+<!--About-->
+<div class="modal" id="about">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">ABOUT</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        About Let's Hi5!<br>
+        Let's Hi5! is a website that helps you find like minded people with common interests!!
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+<!--Logout-->
+<div class="modal" id="logout">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Log out</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Are you sure you want to log out?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <a href="SignIn.html" class="btn btn-primary">Logout</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+<!--Hi5-->
+<div class="modal" id="hi5">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Great!</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        You've just Hi5ed! Do you wish to connect?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" class="open-btn" id="addClass">Yeah!</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Nah!</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+<!--Message-->
+<div class="modal" id="message">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Hi5 and Connect!</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <textarea rows="4" cols="50"></textarea>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Jumbotron Header -->
+      <header class="jumbotron">
+        <h2 style="margin-bottom: 30px;">Get started on your new post!</h2>
+        <div class="row">
+          <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+           <div class="form-group">
+  <textarea class="form-control" rows="3" placeholder="Write your caption!"></textarea>
+</div> 
+           <div class="form-group">
+    <label for="exampleFormControlFile1">Browse your Image here</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+  </div>
+       </div>
+         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+          <table class="table-bordered">
+            <tr>
+              <td>
+          <label><input type="checkbox" name="food"> <i class="fas fa-lg fa-utensils"></i> Food and Drink</label>
+              </td>
+              <td>
+          <label><input type="checkbox" name="crafts"> <i class="fas fa-lg fa-cut"></i> DIY and Crafts</label>
+              </td>
+			  <td>
+          <label><input type="checkbox" name="decor"> <i class="fas fa-lg fa-home"></i> Home Decor</label>
+              </td>
+            </tr>
+            <tr>
+              
+              <td>
+          <label><input type="checkbox" name="fashion"> <i class="fas fa-lg fa-tshirt"></i> Fashion</label>
+              </td>
+			  <td>
+          <label><input type="checkbox" name="quotes"> <i class="fas fa-lg fa-quote-right"></i> Quotes</label>
+              </td>
+              <td>
+          <label><input type="checkbox" name="fitness"> <i class="fas fa-lg fa-dumbbell"></i> Health and Fitness</label></td>
+            </tr>
+            <tr>
+              
+            </tr>
+            <tr>
+                <td>
+          <label><input type="checkbox" name="humor"> <i class="fas fa-lg fa-smile"></i> Humor</label>
+                </td>
+                <td>
+          <label><input type="checkbox" name=""> <i class="fas fa-lg fa-helicopter"></i> Travel</label>
+                </td>
+				<td>
+          <label><input type="checkbox" name="fitness"> <i class="fas fa-lg fa-gamepad"></i> Video Games</label></td>
+            </tr>
+       </table>
+	   <a href="#" class="btn btn-default btn-md" style="float:right; margin-top:30px; margin-right:65px; background-color:#F4AC44; color:#fff;">Post</a>
+	   </div>
+      </div>
+      </header>
+
+      <!-- Page Features -->
+      <div class="row text-center">
+
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            </div>
+            <div class="card-footer">
+              <a href="Profile.html"> <h6 style="float:left;"><img src="/static/img/sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
+              <a data-toggle="modal" data-target="#hi5">
+                <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+          <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            </div>
+            <div class="card-footer">
+              <a href="Profile.html"> <h6 style="float:left;"><img src="/static/img/sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
+              <a data-toggle="modal" data-target="#hi5">
+                <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            </div>
+            <div class="card-footer">
+              <a href="Profile.html"> <h6 style="float:left;"><img src="/static/img/sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
+              <a data-toggle="modal" data-target="#hi5">
+                <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            </div>
+            <div class="card-footer">
+              <a href="Profile.html"> <h6 style="float:left;"><img src="/static/img/sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
+              <a data-toggle="modal" data-target="#hi5">
+                <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+
+<!--Live Chat-->
+<aside id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar">
+
+<div class="popup-head">
+          <div class="popup-head-left pull-left">
+<img class="md-user-image" alt="John Doe" title="John Doe" src="img_avatar1.png" title="John Doe" alt="John Doe">
+<h1>John Doe</h1><small>
+            <div class="popup-head-right pull-right" style="float: right;color: white;">
+            <a class="btn pull-right" href="#" data-widget="remove" id="removeClass" style="color:white;"><i class="fas fa-window-close"></i></a>
+                      </div>
+        </div>
+
+<div id="chat" class="chat_box_wrapper chat_box_small chat_box_active" style="opacity: 1; display: block; transform: translateX(0px);">
+                        <div class="chat_box touchscroll chat_box_colors_a">
+                            <div class="chat_message_wrapper">
+                                <div class="chat_user_avatar">
+                                    <img alt="John Doe" title="John Doe"  src="img_avatar1.png" class="md-user-image">
+                                
+                                </div>
+                                <ul class="chat_message">
+                                    <li>
+                                        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, eum? </p>
+                                    </li>
+                                    <li>
+                                        <p> Lorem ipsum dolor sit amet.<span class="chat_message_time">13:38</span> </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="chat_message_wrapper chat_message_right">
+                                <div class="chat_user_avatar">
+                                    <img alt="John Doe" title="John Doe" src="img_avatar1.png" class="md-user-image">
+                                </div>
+
+                                <ul class="chat_message">
+                                    <li>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus distinctio dolor earum est hic id impedit ipsum minima mollitia natus nulla perspiciatis quae quasi, quis recusandae, saepe, sunt totam.
+                                            <span class="chat_message_time">13:34</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="chat_message_wrapper">
+                                <div class="chat_user_avatar">
+                                    <img alt="John Doe" title="John Doe" src="img_avatar1.png" class="md-user-image">
+                                </div>
+
+                                <ul class="chat_message">
+                                    <li>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque ea mollitia pariatur porro quae sed sequi sint tenetur ut veritatis.https://www.facebook.com/iamgurdeeposahan
+                                            <span class="chat_message_time">23 Jun 1:10am</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="chat_message_wrapper chat_message_right">
+                                <div class="chat_user_avatar">
+                                
+                                    <img alt="John Doe" title="John Doe" src="img_avatar1.png" class="md-user-image">
+                                
+                                </div>
+                                <ul class="chat_message">
+                                    <li>
+                                        <p> Lorem ipsum dolor sit amet, consectetur. </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                            <span class="chat_message_time">Friday 13:34</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+<div class="chat_submit_box">
+    <div class="uk-input-group">
+        <div class="new-chat-box">
+        <span style="vertical-align: sub;" class="uk-input-group-addon">
+        <a href="#"><i class="fa fa-smile-o"></i></a>
+        </span>
+        <input type="text" placeholder="Type a message" id="submit_message" name="submit_message" class="md-input">
+        <span style="vertical-align: sub;" class="uk-input-group-addon">
+        <a href="#"><i class="fa fa-camera"></i></a>
+        </span>
+        </div>
+        <a class="btn pull-right" href="#" style="color:white;"><i class="fas fa-share-square"></i></a>
+    </div>
+</div>
+</div>
+</small>
+</div>
+</div>
+</aside>
+</header></div>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Let's Hi5!</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/css/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+$("#addClass").click(function () {
+  $('#sidebar_secondary').addClass('popup-box-on');
+    });
+  
+    $("#removeClass").click(function () {
+  $('#sidebar_secondary').removeClass('popup-box-on');
+    });
+})
+    </script>
+
+  </body>
+</html>

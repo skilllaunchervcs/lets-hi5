@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='UTF-8'><meta name="robots" content="noindex">
+	<link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+	<link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+	<link rel="canonical" href="https://codepen.io/emilcarlsson/pen/ZOQZaV?limit=all&page=74&q=contact+" />
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
+
+<script src="https://use.typekit.net/hoy3lrg.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+<link rel="stylesheet" type="text/css" href="FinalAssignment.css">
+<link rel="stylesheet" type="text/css" href="chat.css"/>
+</head>
+
+<body>
+
+        <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="FinalAssignment.html"><img style="height:40px" src="Hi5logo.png"></a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+             <form class="form-inline" action="#">
+             <input class="form-control mr-sm-2" type="text" id="search" placeholder="Search">
+              </form>
+            </li>
+          </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <pre class=form-inline>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-utensils"></i> </a>  
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-cut"></i>  </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-home"></i> </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-tshirt"></i> </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-quote-right"></i>  </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-dumbbell"></i> </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-smile"></i>  </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-helicopter"></i> </a>
+            </pre>
+             <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white; padding-top: 16px"> <i class="fas fa-user"></i></a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" class="btn btn-default" href="Profile.html">Profile</a>
+        <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#help">Help?</a>
+        <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#about">About</a>
+        <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#logout">Logout</a>
+      </div>
+      </li>
+            <li class="nav-item">
+              <a style="color:white;" href="chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>  
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+<div class="container">
+
+<div id="frame">
+	<div id="sidepanel">
+		<div id="profile">
+			<div class="wrap">
+				<img id="profile-img" src="img_avatar1.png" class="online" alt="" />
+				<p>John Doe</p>
+			</div>
+		</div>
+		<div id="search">
+			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+			<input type="text" placeholder="Search contacts..." />
+		</div>
+		<div id="contacts">
+			<ul>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status online"></span>
+						<img src="img_avatar1.png" alt="" />
+						<div class="meta">
+							<p class="name">John Doe</p>
+							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae..</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact active">
+					<div class="wrap">
+						<span class="contact-status busy"></span>
+						<img src="img_avatar1.png" alt="" />
+						<div class="meta">
+							<p class="name">John Doe</p>
+							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status away"></span>
+						<img src="img_avatar1.png" alt="" />
+						<div class="meta">
+							<p class="name">John Doe</p>
+							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status online"></span>
+						<img src="img_avatar1.png" alt="" />
+						<div class="meta">
+							<p class="name">John Doe</p>
+							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status busy"></span>
+						<img src="img_avatar1.png" alt="" />
+						<div class="meta">
+							<p class="name">John Doe</p>
+							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status"></span>
+						<img src="img_avatar1.png" alt="" />
+						<div class="meta">
+							<p class="name">John Doe</p>
+							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status"></span>
+						<img src="img_avatar1.png" alt="" />
+						<div class="meta">
+							<p class="name">John Doe</p>
+							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status busy"></span>
+						<img src="img_avatar1.png" alt="" />
+						<div class="meta">
+							<p class="name">John Doe</p>
+							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status"></span>
+						<img src="img_avatar1.png" alt="" />
+						<div class="meta">
+							<p class="name">John Doe</p>
+							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status"></span>
+						<img src="img_avatar1.png" alt="" />
+						<div class="meta">
+							<p class="name">John Doe</p>
+							<p class="preview"><span>You:</span> Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div id="bottom-bar">
+			<button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
+			<button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
+		</div>
+	</div>
+	<div class="content">
+		<div class="contact-profile">
+			<img src="img_avatar1.png" alt="" />
+			<p>John Doe</p>
+			
+		</div>
+		<div class="messages">
+			<ul>
+				<li class="sent">
+					<img src="img_avatar1.png" alt="" />
+					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+				</li>
+				<li class="replies">
+					<img src="img_avatar1.png" alt="" />
+					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+				</li>
+				<li class="replies">
+					<img src="img_avatar1.png" alt="" />
+					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+				</li>
+				<li class="sent">
+					<img src="img_avatar1.png" alt="" />
+					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+				</li>
+				<li class="replies">
+					<img src="img_avatar1.png" alt="" />
+					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+				</li>
+				<li class="replies">
+					<img src="img_avatar1.png" alt="" />
+					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+				</li>
+				<li class="sent">
+					<img src="img_avatar1.png" alt="" />
+					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+				</li>
+				<li class="replies">
+					<img src="img_avatar1.png" alt="" />
+					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
+				</li>
+			</ul>
+		</div>
+		<div class="message-input">
+			<div class="wrap">
+			<input type="text" placeholder="Write your message..." />
+			<i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+			<button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+    <!--Help??-->
+<div class="modal" id="help">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">HELP?</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        How may we help you?<br>
+        Please drop your queries at: xyz@abc.com
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+<!--About-->
+<div class="modal" id="about">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">ABOUT</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        About Let's Hi5!<br>
+        Let's Hi5! is a website that helps you find like minded people with common interests!!
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+<!--Logout-->
+<div class="modal" id="logout">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Log out</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Are you sure you want to log out?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <a href="SignIn.html" class="btn btn-primary">Logout</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script >$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+
+$("#profile-img").click(function() {
+	$("#status-options").toggleClass("active");
+});
+
+$(".expand-button").click(function() {
+  $("#profile").toggleClass("expanded");
+	$("#contacts").toggleClass("expanded");
+});
+
+$("#status-options ul li").click(function() {
+	$("#profile-img").removeClass();
+	$("#status-online").removeClass("active");
+	$("#status-away").removeClass("active");
+	$("#status-busy").removeClass("active");
+	$("#status-offline").removeClass("active");
+	$(this).addClass("active");
+	
+	if($("#status-online").hasClass("active")) {
+		$("#profile-img").addClass("online");
+	} else if ($("#status-away").hasClass("active")) {
+		$("#profile-img").addClass("away");
+	} else if ($("#status-busy").hasClass("active")) {
+		$("#profile-img").addClass("busy");
+	} else if ($("#status-offline").hasClass("active")) {
+		$("#profile-img").addClass("offline");
+	} else {
+		$("#profile-img").removeClass();
+	};
+	
+	$("#status-options").removeClass("active");
+});
+
+function newMessage() {
+	message = $(".message-input input").val();
+	if($.trim(message) == '') {
+		return false;
+	}
+	$('<li class="sent"><img src="img_avatar1.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+	$('.message-input input').val(null);
+	$('.contact.active .preview').html('<span>You: </span>' + message);
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+
+$('.submit').click(function() {
+  newMessage();
+});
+
+$(window).on('keydown', function(e) {
+  if (e.which == 13) {
+    newMessage();
+    return false;
+  }
+});
+//# sourceURL=pen.js
+</script>
+<script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body></html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Let's Hi5!</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="FinalAssignment.css">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="FinalAssignment.html"><img style="height:40px" src="Hi5logo.png"></a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+             <form class="form-inline" action="#">
+             <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search">
+              </form>
+            </li>
+          </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <pre class=form-inline>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-utensils"></i> </a>  
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-cut"></i>  </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-home"></i> </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-tshirt"></i> </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-quote-right"></i>  </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-dumbbell"></i> </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-smile"></i>  </a>
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-helicopter"></i> </a>
+            </pre>
+             <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white; padding-top: 16px"> <i class="fas fa-user"></i></a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" class="btn btn-default" href="Profile.html">Profile</a>
+        <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#help">Help?</a>
+        <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#about">About</a>
+        <a class="dropdown-item" class="btn btn-default" href="Settings.html">Settings</a>
+        <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#logout">Logout</a>
+      </div>
+      </li>
+            <li class="nav-item">
+              <a style="color:white;" href="chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>  
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!--Help??-->
+<div class="modal" id="help">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">HELP?</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        How may we help you?<br>
+        Please drop your queries at: xyz@abc.com
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+<!--About-->
+<div class="modal" id="about">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">ABOUT</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        About Let's Hi5!<br>
+        Let's Hi5! is a website that helps you find like minded people with common interests!!
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+<!--Logout-->
+<div class="modal" id="logout">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Log out</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Are you sure you want to log out?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <a href="SignIn.html" class="btn btn-primary">Logout</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Jumbotron Header -->
+      <header class="jumbotron my-4 row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h1 class="display-3">
+            <img src="sqr.png" style="width:50px;">
+          johndoe
+              <a class="btn btn-default" data-toggle="modal" data-target="#settings"><i class="fas fa-cog" style="font-size: 32px;"></i></a>
+          </h1>
+          </div>    
+      </header>
+
+<!--Settings-->
+  <div class="modal" id="settings">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Settings</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <a href="Settings.html">Change Profile Photo</a><br/>
+        <a href="Settings.html">Change Username</a><br/>
+        <a href="Settings.html">Change Password</a><br/>
+        <a data-toggle="modal" data-target="#logout" data-dismiss="modal">Logout</a><br/>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+      <!-- Page Features -->
+      <div class="row text-center">
+
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            </div>
+            <div class="card-footer">
+              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
+            </div>
+          </div>
+        </div>
+
+          <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            </div>
+            <div class="card-footer">
+              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            </div>
+            <div class="card-footer">
+              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            </div>
+            <div class="card-footer">
+              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Let's Hi5!</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
