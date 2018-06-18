@@ -67,6 +67,17 @@
       </div>
     </nav>
 
+    <!-- nav -->
+<!-- flash -->
+    {% with messages = get_flashed_messages() %}
+       {% if messages %}
+          {% for message in messages %}
+             {{ message }}
+          {% endfor %}
+       {% endif %}
+    {% endwith %}
+<!--//flash   -->
+
     <!--Help??-->
 <div class="modal" id="help">
   <div class="modal-dialog">
