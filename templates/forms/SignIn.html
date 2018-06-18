@@ -40,6 +40,10 @@
   </style>
 </head>
 
+{% if error %}
+	<p class=error><strong>Error:</strong> {{ error }}
+{% endif %}
+
 <body background="static/img/Hi5.jpg">
 
 	<div class="flexbox-container">

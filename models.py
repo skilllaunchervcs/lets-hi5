@@ -10,5 +10,12 @@ db = MongoAlchemy(app)
 
 class User(db.Document):
     email = db.StringField()
-    username=db.StringField()
+    username = db.StringField()
     password = db.StringField()
+
+class Posts(db.Document):
+    id = db.IntField()
+    username = db.StringField()
+    caption = db.StringField()
+    filename = db.StringField()
+    category = db.StringField()

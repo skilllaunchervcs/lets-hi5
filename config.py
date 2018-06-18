@@ -10,6 +10,4 @@ DEBUG = True
 # https://randomkeygen.com/
 SECRET_KEY = 'my precious'
 
-# Connect to the database
-MONGO_DBNAME='hi5'
-MONGO_URI='mongodb://admin:mongo123@ds263460.mlab.com:63460/hi5'
+# Connect to the databases

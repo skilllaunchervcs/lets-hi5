@@ -22,6 +22,7 @@ from sqlalchemy.pool import StaticPool
 import boto3,botocore
 import string
 from flask_mongoalchemy import MongoAlchemy
+from werkzeug.utils import secure_filename
 import config
 #-----------------------------------------a-----------------------------------#
 # App Config.
@@ -31,10 +32,12 @@ app = Flask(__name__)
 app.config.from_object('config')
 bootstrap = Bootstrap(app)
 
+app.config['UPLOAD_FOLDER']='/static/img'
+app.config['ALLOWED_EXTENSIONS']=['jpg','png','jpeg']
 
-@app.route('/main')
-def main():
-    return render_template('pages/FinalAssignment.html')
+@app.route('/feed')
+def feed():
+    return render_template('pages/feed.html',posts=posts)
 
 
 @app.route('/signin',methods=['POST','GET'])
@@ -43,7 +46,7 @@ def signin():
         user = User.query.filter_by(username=request.form['username']).first()
         if bcrypt.hashpw(request.form['password'].encode('utf-8'),user.password.encode('utf-8')) == user.password.encode('utf-8'):
             session['username'] = request.form['username']
-            return render_template('pages/FinalAssignment.html')
+            return render_template('pages/feed.html')
     return render_template('forms/SignIn.html')
 
 
@@ -53,9 +56,33 @@ def signup():
         hashed_password = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt(10))
         user_data= User(email=request.form['username'],username=request.form['username'],password=hashed_password.decode('utf-8'))
         user_data.save()
+        flash('Signup Success!')
         return redirect(url_for('signin'))
 
     return render_template('forms/SignUp.html')
+
+@app.route('/post',methods=['POST','GET'])
+def post():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # Save to DB
+            post = Posts(caption=request.form['caption'],filename=filename,username=session['username'],category=request.form['category'])
+            post.save()
+            return redirect(url_for('feed'))
+
+
 
 
 @app.route('/forgot')
