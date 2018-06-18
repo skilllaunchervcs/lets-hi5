@@ -11,4 +11,5 @@ DEBUG = True
 SECRET_KEY = 'my precious'
 
 # Connect to the database
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
+MONGO_DBNAME='hi5'
+MONGO_URI='mongodb://admin:mongo123@ds263460.mlab.com:63460/hi5'

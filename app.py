@@ -21,7 +21,9 @@ import random
 from sqlalchemy.pool import StaticPool
 import boto3,botocore
 import string
-#----------------------------------------------------------------------------#
+from flask_mongoalchemy import MongoAlchemy
+import config
+#-----------------------------------------a-----------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
 
@@ -30,19 +32,29 @@ app.config.from_object('config')
 bootstrap = Bootstrap(app)
 
 
-
-@app.route('/')
-def home():
+@app.route('/main')
+def main():
     return render_template('pages/FinalAssignment.html')
 
 
-@app.route('/signin')
-def login():
+@app.route('/signin',methods=['POST','GET'])
+def signin():
+    if request.method == 'POST':
+        user = User.query.filter_by(username=request.form['username']).first()
+        if bcrypt.hashpw(request.form['password'].encode('utf-8'),user.password.encode('utf-8')) == user.password.encode('utf-8'):
+            session['username'] = request.form['username']
+            return render_template('pages/FinalAssignment.html')
     return render_template('forms/SignIn.html')
 
 
-@app.route('/signup')
-def register():
+@app.route('/signup',methods=['POST','GET'])
+def signup():
+    if request.method == 'POST':
+        hashed_password = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt(10))
+        user_data= User(email=request.form['username'],username=request.form['username'],password=hashed_password.decode('utf-8'))
+        user_data.save()
+        return redirect(url_for('signin'))
+
     return render_template('forms/SignUp.html')
 
 
