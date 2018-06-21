@@ -3,7 +3,6 @@
 
   <head>
 
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -12,21 +11,30 @@
     <title>Let's Hi5!</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!--Fontawesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="FinalAssignment.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/FinalAssignment.css')}}">
 
   </head>
 
   <body>
-
+    <br><br>
+    <!-- flash -->
+        {% with messages = get_flashed_messages() %}
+           {% if messages %}
+              {% for message in messages %}
+                 <b>{{ message }}</b>
+              {% endfor %}
+           {% endif %}
+        {% endwith %}
+    <!--//flash   -->
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="FinalAssignment.html"><img style="height:40px" src="Hi5logo.png"></a>
+        <a class="navbar-brand" href="{{url_for('feed')}}"><img style="height:40px" src="static/img/Hi5logo.png"></a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
              <form class="form-inline" action="#">
@@ -39,33 +47,37 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <pre class=form-inline>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-utensils"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-cut"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-home"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-tshirt"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-quote-right"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-dumbbell"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-smile"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-helicopter"></i> </a>
+            <li><pre class=form-inline>
+            <a style="color:white; text-decoration: none!important;" title="Food & Drinks" href="{{ url_for('category',category="food-drink") }}"><br/><i class="fas fa-lg fa-utensils" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="DIY and Crafts" href="{{ url_for('category',category="diy") }}"><br/><i class="fas fa-lg fa-cut" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+            <a style="color:white; text-decoration: none!important;" title="Home Decor" href="{{ url_for('category',category="home-decor") }}"><br/><i class="fas fa-lg fa-home" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="Fashion" href="{{ url_for('category',category="fashion") }}"><br/><i class="fas fa-lg fa-tshirt" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="Quotes" href="{{ url_for('category',category="quotes") }}"><br/><i class="fas fa-lg fa-quote-right" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+            <a style="color:white; text-decoration: none!important;" title="Health and Fitness" href="{{ url_for('category',category="health") }}"><br/><i class="fas fa-lg fa-dumbbell" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="Humor" href="{{ url_for('category',category="humor") }}"><br/><i class="fas fa-lg fa-smile" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+            <a style="color:white; text-decoration: none!important;" title="Travel" href="{{ url_for('category',category="travel") }}"><br/><i class="fas fa-lg fa-helicopter" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+			      <a style="color:white; text-decoration: none!important;" title="Video Games" href="{{ url_for('category',category="video-games") }}"><br/><i class="fas fa-lg fa-gamepad" style="font-size: 1.5em; padding-right:5px;"></i> </a>
             </pre>
-             <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white; padding-top: 16px"> <i class="fas fa-user"></i></a>
+             </li>
+            <li>
+              <a style="color:white;" href="pages/chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i> Messeges</a>
+            </li>
+			<li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white; padding-top: 16px"> <i class="fas fa-user"></i> My Account</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" class="btn btn-default" href="Profile.html">Profile</a>
+        <a class="dropdown-item" class="btn btn-default" href="#">Profile</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#help">Help?</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#about">About</a>
-        <a class="dropdown-item" class="btn btn-default" href="Settings.html">Settings</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#logout">Logout</a>
       </div>
       </li>
-            <li class="nav-item">
-              <a style="color:white;" href="pages/chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>
-            </li>
           </ul>
         </div>
       </div>
     </nav>
+
+    <!-- nav -->
+
 
     <!--Help??-->
 <div class="modal" id="help">
@@ -148,6 +160,59 @@
 </div>
 <!---->
 
+<!--Hi5-->
+<div class="modal" id="hi5">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Great!</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        You've just Hi5ed! Do you wish to connect?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" class="open-btn" id="addClass">Yeah!</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Nah!</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+<!--Message-->
+<div class="modal" id="message">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Hi5 and Connect!</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <textarea rows="4" cols="50"></textarea>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
     <!-- Page Content -->
     <div class="container">
 
@@ -155,7 +220,7 @@
       <header class="jumbotron my-4 row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h1 class="display-3">
-            <img src="sqr.png" style="width:50px;">
+            <img src="/static/img/sqr.png" style="width:50px;">
           johndoe
               <a class="btn btn-default" data-toggle="modal" data-target="#settings"><i class="fas fa-cog" style="font-size: 32px;"></i></a>
           </h1>
@@ -175,9 +240,9 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <a href="Settings.html">Change Profile Photo</a><br/>
-        <a href="Settings.html">Change Username</a><br/>
-        <a href="Settings.html">Change Password</a><br/>
+        <a href="{{ url_for('settings') }}">Change Profile Photo</a><br/>
+        <a href="{{ url_for('settings') }}">Change Username</a><br/>
+        <a href="{{ url_for('settings') }}">Change Password</a><br/>
         <a data-toggle="modal" data-target="#logout" data-dismiss="modal">Logout</a><br/>
       </div>
 
@@ -192,59 +257,20 @@
 
       <!-- Page Features -->
       <div class="row text-center">
-
+        {% for post in posts %}
         <div class="col-lg-6 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <img class="card-img-top" src="/static/img/{{ post['filename'] }}" alt="">
             <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+              <h4 class="card-title">Title</h4>
+              <p class="card-text">{{ post['caption'] }}</p>
             </div>
             <div class="card-footer">
-              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
+              <a href="profile/{{ post['username'] }}"> <h6 style="float:left;"><img src="/static/img/sqr.png" alt="Card image" class="img-circle" style="width:32px">{{ post['username'] }}</h6></a>
             </div>
           </div>
         </div>
-
-          <div class="col-lg-6 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
-            </div>
-          </div>
-        </div>
-
+        {% endfor %}
       </div>
       <!-- /.row -->
 
@@ -261,7 +287,9 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/static/css/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
   </body>
 </html>

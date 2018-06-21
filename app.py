@@ -39,8 +39,10 @@ configure_uploads(app,photos)
 
 @app.route('/signin',methods=['POST','GET'])
 def signin():
+    # check if logged in
     if session['username']:
         return redirect(url_for('feed'))
+        # check if hashes match and set session variables
     if request.method == 'POST':
         user = User.query.filter_by(username=request.form['username']).first()
         if bcrypt.hashpw(request.form['password'].encode('utf-8'),user.password.encode('utf-8')) == user.password.encode('utf-8'):
@@ -51,15 +53,17 @@ def signin():
 
 @app.route('/signup',methods=['POST','GET'])
 def signup():
+    # check if logged in
     if session['username']:
         return redirect(url_for('feed'))
+    # store hashed password and credentials for POST request
     if request.method == 'POST':
         hashed_password = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt(10))
-        user_data= User(email=request.form['username'],username=request.form['username'],password=hashed_password.decode('utf-8'))
+        user_data= User(email=request.form['username'],username=request.form['username'],password=hashed_password.decode('utf-8'),display_picture="sqr.png")
         user_data.save()
         flash('Signup Success!')
         return redirect(url_for('signin'))
-
+    # render form for GET
     return render_template('forms/SignUp.html')
 
 
@@ -70,18 +74,21 @@ def forgot():
 
 @app.route('/logout')
 def logout():
+    # clear all session variables
     session.clear()
     return redirect(url_for('signin'))
 
 # Photo Upload route
 @app.route('/post',methods=['POST'])
 def post():
+    # save filename using Upload set object 'photos'
     if request.method == 'POST' and 'photo' in request.files:
         filename = photos.save(request.files['photo'])
         file = request.files['photo']
-        if file.filename == '':
+        if file.filename == '': # check if there's a file enqueued
             return redirect(url_for('feed'))
             flash('No selected photo')
+        # save in database
         post = Posts(caption=request.form['caption'],filename=filename,username=session['username'],category=request.form.getlist('category')[0],date=datetime.datetime.utcnow())
         post.save()
         flash('Your new post is up!')
@@ -93,7 +100,7 @@ def post():
 @app.route('/feed')
 def feed():
     if session['username']:
-        posts = Posts.query.all()
+        posts = Posts.query.all() # Get all posts which have been uploaded
         return render_template('pages/feed.html',posts=posts)
     else:
         flash('Nothing here. Please login here or sign up by clicking the corresponding link below')
@@ -110,8 +117,20 @@ def category(category):
 #Profile page route
 @app.route('/profile/<username>',methods=['POST','GET'])
 def profile(username):
+    if username == session['username']:
+        return redirect(url_for('your_profile'))
     profile_posts = Posts.query.filter(Posts.username == username).all()
     return render_template('pages/Profile.html',posts=profile_posts,username=username)
+
+@app.route('/your_profile',methods=['POST','GET'])
+def your_profile():
+    posts= Posts.query.filter(Posts.username == session['username']).all()
+    return render_template('pages/YourProfile.html',posts=posts)
+
+@app.route('/settings',methods=['POST','GET'])
+def settings():
+    return render_template('pages/settings.html')
+
 
 # Error handlers.
 

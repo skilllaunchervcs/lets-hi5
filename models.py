@@ -12,6 +12,7 @@ class User(db.Document):
     email = db.StringField()
     username = db.StringField()
     password = db.StringField()
+    display_picture = db.StringField()
 
 class Posts(db.Document):
     username = db.StringField()

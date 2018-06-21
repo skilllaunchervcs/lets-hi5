@@ -12,12 +12,12 @@
     <title>Settings</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!--Fontawesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="FinalAssignment.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/FinalAssignment.css')}}">
 
     <style type="text/css">
       .flexbox-container
@@ -84,7 +84,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="FinalAssignment.html"><img style="height:40px" src="Hi5logo.png"></a>
+        <a class="navbar-brand" href="{{url_for('feed')}}"><img style="height:40px" src="/static/img/Hi5logo.png"></a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
              <form class="form-inline" action="#">
@@ -98,26 +98,27 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <pre class=form-inline>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-utensils"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-cut"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-home"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-tshirt"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-quote-right"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-dumbbell"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-smile"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-helicopter"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="Food & Drinks" href="{{ url_for('category',category="food-drink") }}"><br/><i class="fas fa-lg fa-utensils" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="DIY and Crafts" href="{{ url_for('category',category="diy") }}"><br/><i class="fas fa-lg fa-cut" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+              <a style="color:white; text-decoration: none!important;" title="Home Decor" href="{{ url_for('category',category="home-decor") }}"><br/><i class="fas fa-lg fa-home" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="Fashion" href="{{ url_for('category',category="fashion") }}"><br/><i class="fas fa-lg fa-tshirt" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="Quotes" href="{{ url_for('category',category="quotes") }}"><br/><i class="fas fa-lg fa-quote-right" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+              <a style="color:white; text-decoration: none!important;" title="Health and Fitness" href="{{ url_for('category',category="health") }}"><br/><i class="fas fa-lg fa-dumbbell" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="Humor" href="{{ url_for('category',category="humor") }}"><br/><i class="fas fa-lg fa-smile" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+              <a style="color:white; text-decoration: none!important;" title="Travel" href="{{ url_for('category',category="travel") }}"><br/><i class="fas fa-lg fa-helicopter" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="Video Games" href="{{ url_for('category',category="video-games") }}"><br/><i class="fas fa-lg fa-gamepad" style="font-size: 1.5em; padding-right:5px;"></i> </a>
             </pre>
              <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white; padding-top: 16px"> <i class="fas fa-user"></i></a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" class="btn btn-default" href="Profile.html">Profile</a>
+        <a class="dropdown-item" class="btn btn-default" href="{{url_for('your_profile')}}">Profile</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#help">Help?</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#about">About</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#logout">Logout</a>
       </div>
       </li>
             <li class="nav-item">
-              <a style="color:white;" href="chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>
+              <a style="color:white;" href="#"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>
             </li>
           </ul>
         </div>
@@ -368,8 +369,8 @@
 </div>
 
 
-   <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/css/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script type="text/javascript">
       $(function(){
