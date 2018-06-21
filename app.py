@@ -37,18 +37,10 @@ photos = UploadSet('photos',IMAGES)
 app.config['UPLOADED_PHOTOS_DEST']='static/img'
 configure_uploads(app,photos)
 
-@app.route('/feed')
-def feed():
-    if session['username']:
-        posts = Posts.query.all()
-        return render_template('pages/feed.html',posts=posts)
-    else:
-        flash('Nothing here. Please login here or sign up by clicking the corresponding link below')
-        return redirect(url_for('signin'))
-
-
 @app.route('/signin',methods=['POST','GET'])
 def signin():
+    if session['username']:
+        return redirect(url_for('feed'))
     if request.method == 'POST':
         user = User.query.filter_by(username=request.form['username']).first()
         if bcrypt.hashpw(request.form['password'].encode('utf-8'),user.password.encode('utf-8')) == user.password.encode('utf-8'):
@@ -59,6 +51,8 @@ def signin():
 
 @app.route('/signup',methods=['POST','GET'])
 def signup():
+    if session['username']:
+        return redirect(url_for('feed'))
     if request.method == 'POST':
         hashed_password = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt(10))
         user_data= User(email=request.form['username'],username=request.form['username'],password=hashed_password.decode('utf-8'))
@@ -68,6 +62,18 @@ def signup():
 
     return render_template('forms/SignUp.html')
 
+
+@app.route('/forgot')
+def forgot():
+    form = ForgotForm(request.form)
+    return render_template('forms/forgot.html', form=form)
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('signin'))
+
+# Photo Upload route
 @app.route('/post',methods=['POST'])
 def post():
     if request.method == 'POST' and 'photo' in request.files:
@@ -84,25 +90,28 @@ def post():
             flash('An error occurred while uploading')
             return redirect(url_for('feed'))
 
+@app.route('/feed')
+def feed():
+    if session['username']:
+        posts = Posts.query.all()
+        return render_template('pages/feed.html',posts=posts)
+    else:
+        flash('Nothing here. Please login here or sign up by clicking the corresponding link below')
+        return redirect(url_for('signin'))
 
 
+# Categorization route
 @app.route('/category/<category>',methods=['GET','POST'])
 def category(category):
     category_posts = Posts.query.filter(Posts.category == category).all()
     return render_template('pages/CategoryPage.html',posts=category_posts,category=category)
 
 
-
-
-@app.route('/forgot')
-def forgot():
-    form = ForgotForm(request.form)
-    return render_template('forms/forgot.html', form=form)
-
-@app.route('/logout')
-def logout():
-    session.clear()
-    return redirect(url_for('signin'))
+#Profile page route
+@app.route('/profile/<username>',methods=['POST','GET'])
+def profile(username):
+    profile_posts = Posts.query.filter(Posts.username == username).all()
+    return render_template('pages/Profile.html',posts=profile_posts,username=username)
 
 # Error handlers.
 

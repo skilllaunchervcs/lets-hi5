@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <pre class=form-inline>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-utensils"></i> </a>  
+            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-utensils"></i> </a>
             <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-cut"></i>  </a>
             <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-home"></i> </a>
             <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-tshirt"></i> </a>
@@ -60,7 +60,7 @@
       </div>
       </li>
             <li class="nav-item">
-              <a style="color:white;" href="chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>  
+              <a style="color:white;" href="pages/chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>
             </li>
           </ul>
         </div>
@@ -139,7 +139,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <a href="SignIn.html" class="btn btn-primary">Logout</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 
@@ -159,7 +159,7 @@
           johndoe
               <a class="btn btn-default" data-toggle="modal" data-target="#settings"><i class="fas fa-cog" style="font-size: 32px;"></i></a>
           </h1>
-          </div>    
+          </div>
       </header>
 
 <!--Settings-->

@@ -25,7 +25,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="pages/feed.html"><img style="height:40px" src="/static/img/Hi5logo.png"></a>
+        <a class="navbar-brand" href="{{url_for('feed')}}"><img style="height:40px" src="/static/img/Hi5logo.png"></a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
              <form class="form-inline" action="#">
@@ -52,14 +52,14 @@
              <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white; padding-top: 16px"> <i class="fas fa-user"></i></a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" class="btn btn-default" href="Profile.html">Profile</a>
+        <a class="dropdown-item" class="btn btn-default" href="#">Profile</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#help">Help?</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#about">About</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#logout">Logout</a>
       </div>
       </li>
             <li class="nav-item">
-              <a style="color:white;" href="chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>
+              <a style="color:white;" href="#"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>
             </li>
           </ul>
         </div>
@@ -195,7 +195,7 @@
               <p class="card-text">{{ post['caption'] }}</p>
             </div>
             <div class="card-footer">
-              <a href="#"> <h6 style="float:left;"><img src="/static/img/sqr.png" alt="Card image" class="img-circle" style="width:32px">{{ post['username'] }}</h6></a>
+              <a href="/profile/{{ post['username'] }}"> <h6 style="float:left;"><img src="/static/img/sqr.png" alt="Card image" class="img-circle" style="width:32px">{{ post['username'] }}</h6></a>
               <a data-toggle="modal" data-target="#hi5">
                 <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
               </a>
