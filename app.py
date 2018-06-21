@@ -39,8 +39,12 @@ configure_uploads(app,photos)
 
 @app.route('/feed')
 def feed():
-    posts = Posts.query.all()
-    return render_template('pages/feed.html',posts=posts)
+    if session['username']:
+        posts = Posts.query.all()
+        return render_template('pages/feed.html',posts=posts)
+    else:
+        flash('Nothing here. Please login here or sign up by clicking the corresponding link below')
+        return redirect(url_for('signin'))
 
 
 @app.route('/signin',methods=['POST','GET'])
@@ -68,14 +72,24 @@ def signup():
 def post():
     if request.method == 'POST' and 'photo' in request.files:
         filename = photos.save(request.files['photo'])
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(url_for('feed'))
         file = request.files['photo']
         post = Posts(caption=request.form['caption'],filename=filename,username=session['username'],category=request.form.getlist('category')[0],date=datetime.datetime.utcnow())
         post.save()
         flash('Your new post is up!')
         return redirect(url_for('feed'))
+    elif 'photo' not in request.files:
+            flash('No file part')
+            return redirect(url_for('feed'))
 
 
 
+@app.route('/category/<category>',methods=['GET'])
+def category(category):
+    category_posts = Posts.query.filter(Posts.category == category).all()
+    return render_template('pages/CategoryPage.html',posts=category_posts,category=category)
 
 
 
@@ -84,6 +98,12 @@ def post():
 def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('You have successfully logged out')
+    return redirect(url_for('signin'))
 
 # Error handlers.
 

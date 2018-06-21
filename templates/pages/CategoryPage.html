@@ -16,7 +16,7 @@
     <!--Fontawesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="FinalAssignment.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/FinalAssignment.css')}}">
 
   </head>
 
@@ -25,7 +25,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="FinalAssignment.html"><img style="height:40px" src="Hi5logo.png"></a>
+        <a class="navbar-brand" href="pages/feed.html"><img style="height:40px" src="Hi5logo.png"></a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
              <form class="form-inline" action="#">
@@ -39,14 +39,14 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <pre class=form-inline>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-utensils"></i> </a>  
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-cut"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-home"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-tshirt"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-quote-right"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-dumbbell"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-smile"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-helicopter"></i> </a>
+            <a style="color:white;" href="pages/CategoryPage.html"><br/><i class="fas fa-lg fa-utensils"></i> </a>
+            <a style="color:white;" href="pages/CategoryPage.html"><br/><i class="fas fa-lg fa-cut"></i>  </a>
+            <a style="color:white;" href="pages/CategoryPage.html"><br/><i class="fas fa-lg fa-home"></i> </a>
+            <a style="color:white;" href="pages/CategoryPage.html"><br/><i class="fas fa-lg fa-tshirt"></i> </a>
+            <a style="color:white;" href="pages/CategoryPage.html"><br/><i class="fas fa-lg fa-quote-right"></i>  </a>
+            <a style="color:white;" href="pages/CategoryPage.html"><br/><i class="fas fa-lg fa-dumbbell"></i> </a>
+            <a style="color:white;" href="pages/CategoryPage.html"><br/><i class="fas fa-lg fa-smile"></i>  </a>
+            <a style="color:white;" href="pages/CategoryPage.html"><br/><i class="fas fa-lg fa-helicopter"></i> </a>
             </pre>
              <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white; padding-top: 16px"> <i class="fas fa-user"></i></a>
@@ -58,7 +58,7 @@
       </div>
       </li>
             <li class="nav-item">
-              <a style="color:white;" href="chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>  
+              <a style="color:white;" href="chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>
             </li>
           </ul>
         </div>
@@ -179,77 +179,29 @@
       <!-- Jumbotron Header -->
       <header class="jumbotron my-4 row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-          <h1 class="display-3">Category Name</h1>
+          <h1 class="display-3">{{ category }}</h1>
           </div>
       </header>
 
       <!-- Page Features -->
       <div class="row text-center">
-
+        {% for post in posts %}
         <div class="col-lg-6 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <img class="card-img-top" src="static/img/{{ post['filename'] }}" alt="">
             <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+              <h4 class="card-title">Title</h4>
+              <p class="card-text">{{ post['caption'] }}</p>
             </div>
             <div class="card-footer">
-              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
+              <a href="#"> <h6 style="float:left;"><img src="/static/img/sqr.png" alt="Card image" class="img-circle" style="width:32px">{{ post['username'] }}</h6></a>
               <a data-toggle="modal" data-target="#hi5">
                 <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
               </a>
             </div>
           </div>
         </div>
-
-          <div class="col-lg-6 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
-              <a data-toggle="modal" data-target="#hi5">
-                <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
-              <a data-toggle="modal" data-target="#hi5">
-                <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="Profile.html"> <h6 style="float:left;"><img src="sqr.png" alt="Card image" class="img-circle" style="width:32px"> johndoe</h6></a>
-              <a data-toggle="modal" data-target="#hi5">
-                <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
+        {% endfor %}
       </div>
       <!-- /.row -->
 
@@ -274,7 +226,7 @@
                             <div class="chat_message_wrapper">
                                 <div class="chat_user_avatar">
                                     <img alt="John Doe" title="John Doe"  src="img_avatar1.png" class="md-user-image">
-                                
+
                                 </div>
                                 <ul class="chat_message">
                                     <li>
@@ -316,9 +268,9 @@
                             </div>
                             <div class="chat_message_wrapper chat_message_right">
                                 <div class="chat_user_avatar">
-                                
+
                                     <img alt="John Doe" title="John Doe" src="img_avatar1.png" class="md-user-image">
-                                
+
                                 </div>
                                 <ul class="chat_message">
                                     <li>
@@ -372,7 +324,7 @@
 $("#addClass").click(function () {
   $('#sidebar_secondary').addClass('popup-box-on');
     });
-  
+
     $("#removeClass").click(function () {
   $('#sidebar_secondary').removeClass('popup-box-on');
     });
