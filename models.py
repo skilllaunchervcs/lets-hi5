@@ -14,8 +14,8 @@ class User(db.Document):
     password = db.StringField()
 
 class Posts(db.Document):
-    id = db.IntField()
     username = db.StringField()
     caption = db.StringField()
     filename = db.StringField()
     category = db.StringField()
+    date = db.DateTimeField()

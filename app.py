@@ -13,7 +13,7 @@ import os
 from models import *
 import bcrypt
 from werkzeug import secure_filename, FileStorage
-from flask_uploads import UploadSet,configure_uploads,DOCUMENTS
+from flask_uploads import UploadSet,configure_uploads,IMAGES
 from flask_mail import Mail,Message
 import datetime
 import time
@@ -32,11 +32,14 @@ app = Flask(__name__)
 app.config.from_object('config')
 bootstrap = Bootstrap(app)
 
-app.config['UPLOAD_FOLDER']='/static/img'
-app.config['ALLOWED_EXTENSIONS']=['jpg','png','jpeg']
+# file upload config
+photos = UploadSet('photos',IMAGES)
+app.config['UPLOADED_PHOTOS_DEST']='static/img'
+configure_uploads(app,photos)
 
 @app.route('/feed')
 def feed():
+    posts = Posts.query.all()
     return render_template('pages/feed.html',posts=posts)
 
 
@@ -61,26 +64,18 @@ def signup():
 
     return render_template('forms/SignUp.html')
 
-@app.route('/post',methods=['POST','GET'])
+@app.route('/post',methods=['POST'])
 def post():
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        # if user does not select file, browser also
-        # submit an empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        # Save to DB
-            post = Posts(caption=request.form['caption'],filename=filename,username=session['username'],category=request.form['category'])
-            post.save()
-            return redirect(url_for('feed'))
+    if request.method == 'POST' and 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        file = request.files['photo']
+        post = Posts(caption=request.form['caption'],filename=filename,username=session['username'],category=request.form.getlist('category')[0],date=datetime.datetime.utcnow())
+        post.save()
+        flash('Your new post is up!')
+        return redirect(url_for('feed'))
+
+
+
 
 
 

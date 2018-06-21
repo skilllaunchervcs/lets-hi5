@@ -21,7 +21,16 @@
   </head>
 
   <body>
-
+    <br><br>
+    <!-- flash -->
+        {% with messages = get_flashed_messages() %}
+           {% if messages %}
+              {% for message in messages %}
+                 {{ message }}
+              {% endfor %}
+           {% endif %}
+        {% endwith %}
+    <!--//flash   -->
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -68,15 +77,7 @@
     </nav>
 
     <!-- nav -->
-<!-- flash -->
-    {% with messages = get_flashed_messages() %}
-       {% if messages %}
-          {% for message in messages %}
-             {{ message }}
-          {% endfor %}
-       {% endif %}
-    {% endwith %}
-<!--//flash   -->
+
 
     <!--Help??-->
 <div class="modal" id="help">
@@ -212,67 +213,71 @@
 </div>
 <!---->
     <!-- Page Content -->
-    <div class="container">
+  <div id="container">
+    <form action="{{ url_for('post') }}" enctype=multipart/form-data method=POST>
 
       <!-- Jumbotron Header -->
-      <form action="{{ url_for('post') }}" method='POST' enctype=multipart/form-data id="post-form">
-      <header class="jumbotron">
-        <h2 style="margin-bottom: 30px;">Get started on your new post!</h2>
-
+    <header class="jumbotron">
+        <!-- Form header -->
+      <h2 style="margin-bottom: 30px;">Get started on your new post!</h2>
         <div class="row">
           <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+
            <div class="form-group">
-             <textarea class="form-control" rows="3" name="caption" placeholder="Write your caption!" form="post-form"></textarea>
-          </div>
-        <div class="form-group">
-          <label for="exampleFormControlFile1">Browse your Image here</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1">
-        </div>
-          </div>
+             <textarea class="form-control" rows="3" name="caption" placeholder="Write your caption!"></textarea>
+
+             <label for="exampleFormControlFile1">Browse your Image here</label>
+             <input type="file" class="form-control-file" name="photo" id="exampleFormControlFile">
+
+
+
 
          <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+
           <table class="table-bordered">
             <tr>
               <td>
-          <label><input type="checkbox" class="single-checkbox" name="category"> <i class="fas fa-lg fa-utensils"></i> Food and Drink</label>
+          <label><input type="checkbox" class="single-checkbox" name="category" value="food-drink"> <i class="fas fa-lg fa-utensils"></i> Food and Drink</label>
               </td>
               <td>
-          <label><input type="checkbox" class="single-checkbox" name="category"> <i class="fas fa-lg fa-cut"></i> DIY and Crafts</label>
+          <label><input type="checkbox" class="single-checkbox" name="category" value="diy"> <i class="fas fa-lg fa-cut"></i> DIY and Crafts</label>
               </td>
 			  <td>
-          <label><input type="checkbox" class="single-checkbox" name="category"> <i class="fas fa-lg fa-home"></i> Home Decor</label>
+          <label><input type="checkbox" class="single-checkbox" name="category" value="home-decor"> <i class="fas fa-lg fa-home"></i> Home Decor</label>
               </td>
             </tr>
             <tr>
 
               <td>
-          <label><input type="checkbox" class="single-checkbox" name="category"> <i class="fas fa-lg fa-tshirt"></i> Fashion</label>
+          <label><input type="checkbox" class="single-checkbox" name="category" value="fashion"> <i class="fas fa-lg fa-tshirt"></i> Fashion</label>
               </td>
 			  <td>
-          <label><input type="checkbox" class="single-checkbox" name="category"> <i class="fas fa-lg fa-quote-right"></i> Quotes</label>
+          <label><input type="checkbox" class="single-checkbox" name="category"  value="quotes"> <i class="fas fa-lg fa-quote-right"></i> Quotes</label>
               </td>
               <td>
-          <label><input type="checkbox" class="single-checkbox" name="category"> <i class="fas fa-lg fa-dumbbell"></i> Health and Fitness</label></td>
-            </tr>
-            <tr>
-
+          <label><input type="checkbox" class="single-checkbox" name="category" value="health"> <i class="fas fa-lg fa-dumbbell"></i> Health and Fitness</label></td>
             </tr>
             <tr>
                 <td>
-          <label><input type="checkbox" class="single-checkbox" name="category"> <i class="fas fa-lg fa-smile"></i> Humor</label>
+          <label><input type="checkbox" class="single-checkbox" name="category" value="humor"> <i class="fas fa-lg fa-smile"></i> Humor</label>
                 </td>
                 <td>
-          <label><input type="checkbox" class="single-checkbox" name="category"> <i class="fas fa-lg fa-helicopter"></i> Travel</label>
+          <label><input type="checkbox" class="single-checkbox" name="category" value="travel"> <i class="fas fa-lg fa-helicopter"></i> Travel</label>
                 </td>
 				<td>
-          <label><input type="checkbox" class="single-checkbox" name="category"> <i class="fas fa-lg fa-gamepad"></i> Video Games</label></td>
+          <label><input type="checkbox" class="single-checkbox" name="category" value="video-games"> <i class="fas fa-lg fa-gamepad"></i> Video Games</label></td>
             </tr>
-       </table>
-	   <button type="submit" class="btn btn-default btn-md" style="float:right; margin-top:30px; margin-right:65px; background-color:#F4AC44; color:#fff;">Post</a>
-	   </div>
-      </div>
-      </header>
+          </table>
 
+	   <button type="submit" class="btn btn-default btn-md" style="float:right; margin-top:30px; margin-right:65px; background-color:#F4AC44; color:#fff;">Post</button>
+     </div>
+     </div>
+
+    </div>
+
+      </header>
+  </form>
+</div>
       <!-- Page Features -->
       <div class="row text-center">
         {% for post in posts %}
@@ -284,7 +289,7 @@
               <p class="card-text">{{ post['caption'] }}</p>
             </div>
             <div class="card-footer">
-              <a href="Profile.html"> <h6 style="float:left;"><img src="/static/img/sqr.png" alt="Card image" class="img-circle" style="width:32px">{{ post['username'] }}</h6></a>
+              <a href="#"> <h6 style="float:left;"><img src="/static/img/sqr.png" alt="Card image" class="img-circle" style="width:32px">{{ post['username'] }}</h6></a>
               <a data-toggle="modal" data-target="#hi5">
                 <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
               </a>
