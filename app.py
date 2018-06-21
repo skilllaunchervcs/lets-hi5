@@ -53,7 +53,7 @@ def signin():
         user = User.query.filter_by(username=request.form['username']).first()
         if bcrypt.hashpw(request.form['password'].encode('utf-8'),user.password.encode('utf-8')) == user.password.encode('utf-8'):
             session['username'] = request.form['username']
-            return render_template('pages/feed.html')
+            return redirect(url_for('feed'))
     return render_template('forms/SignIn.html')
 
 
@@ -73,7 +73,7 @@ def post():
     if request.method == 'POST' and 'photo' in request.files:
         filename = photos.save(request.files['photo'])
         if file.filename == '':
-            flash('No selected file')
+            flash('No selected photo')
             return redirect(url_for('feed'))
         file = request.files['photo']
         post = Posts(caption=request.form['caption'],filename=filename,username=session['username'],category=request.form.getlist('category')[0],date=datetime.datetime.utcnow())
@@ -81,7 +81,7 @@ def post():
         flash('Your new post is up!')
         return redirect(url_for('feed'))
     elif 'photo' not in request.files:
-            flash('No file part')
+            flash('An error occurred while uploading')
             return redirect(url_for('feed'))
 
 
@@ -102,7 +102,6 @@ def forgot():
 @app.route('/logout')
 def logout():
     session.clear()
-    flash('You have successfully logged out')
     return redirect(url_for('signin'))
 
 # Error handlers.
