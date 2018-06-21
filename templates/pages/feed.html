@@ -48,15 +48,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li><pre class=form-inline>
-            <a style="color:white; text-decoration: none!important;" title="Food & Drinks" href="CategoryPage.html"><br/><i class="fas fa-lg fa-utensils" style="font-size: 1.5em; padding-right:5px;"></i> </a>
-            <a style="color:white; text-decoration: none!important;" title="DIY and Crafts" href="CategoryPage.html"><br/><i class="fas fa-lg fa-cut" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
-            <a style="color:white; text-decoration: none!important;" title="Home Decor" href="CategoryPage.html"><br/><i class="fas fa-lg fa-home" style="font-size: 1.5em; padding-right:5px;"></i> </a>
-            <a style="color:white; text-decoration: none!important;" title="Fashion" href="CategoryPage.html"><br/><i class="fas fa-lg fa-tshirt" style="font-size: 1.5em; padding-right:5px;"></i> </a>
-            <a style="color:white; text-decoration: none!important;" title="Quotes" href="CategoryPage.html"><br/><i class="fas fa-lg fa-quote-right" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
-            <a style="color:white; text-decoration: none!important;" title="Health and Fitness" href="CategoryPage.html"><br/><i class="fas fa-lg fa-dumbbell" style="font-size: 1.5em; padding-right:5px;"></i> </a>
-            <a style="color:white; text-decoration: none!important;" title="Humor" href="CategoryPage.html"><br/><i class="fas fa-lg fa-smile" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
-            <a style="color:white; text-decoration: none!important;" title="Travel" href="CategoryPage.html"><br/><i class="fas fa-lg fa-helicopter" style="font-size: 1.5em; padding-right:5px;"></i> </a>
-			      <a style="color:white; text-decoration: none!important;" title="Video Games" href="CategoryPage.html"><br/><i class="fas fa-lg fa-gamepad" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="Food & Drinks" href="{{ url_for('category',category="food-drink") }}"><br/><i class="fas fa-lg fa-utensils" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="DIY and Crafts" href="{{ url_for('category',category="diy") }}"><br/><i class="fas fa-lg fa-cut" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+            <a style="color:white; text-decoration: none!important;" title="Home Decor" href="{{ url_for('category',category="home-decor") }}"><br/><i class="fas fa-lg fa-home" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="Fashion" href="{{ url_for('category',category="fashion") }}"><br/><i class="fas fa-lg fa-tshirt" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="Quotes" href="{{ url_for('category',category="quotes") }}"><br/><i class="fas fa-lg fa-quote-right" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+            <a style="color:white; text-decoration: none!important;" title="Health and Fitness" href="{{ url_for('category',category="health") }}"><br/><i class="fas fa-lg fa-dumbbell" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+            <a style="color:white; text-decoration: none!important;" title="Humor" href="{{ url_for('category',category="humor") }}"><br/><i class="fas fa-lg fa-smile" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+            <a style="color:white; text-decoration: none!important;" title="Travel" href="{{ url_for('category',category="travel") }}"><br/><i class="fas fa-lg fa-helicopter" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+			      <a style="color:white; text-decoration: none!important;" title="Video Games" href="{{ url_for('category',category="video-games") }}"><br/><i class="fas fa-lg fa-gamepad" style="font-size: 1.5em; padding-right:5px;"></i> </a>
             </pre>
              </li>
             <li>
@@ -414,8 +414,11 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
+
     <script src="/static/css/vendor/jquery/jquery.min.js"></script>
     <script src="/static/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
 
     <script type="text/javascript">
 

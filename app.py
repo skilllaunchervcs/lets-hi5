@@ -86,7 +86,7 @@ def post():
 
 
 
-@app.route('/category/<category>',methods=['GET'])
+@app.route('/category/<category>',methods=['GET','POST'])
 def category(category):
     category_posts = Posts.query.filter(Posts.category == category).all()
     return render_template('pages/CategoryPage.html',posts=category_posts,category=category)
