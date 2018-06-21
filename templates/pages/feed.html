@@ -213,8 +213,9 @@
 </div>
 <!---->
     <!-- Page Content -->
+<form action="{{ url_for('post') }}" enctype=multipart/form-data method=POST>
   <div id="container">
-    <form action="{{ url_for('post') }}" enctype=multipart/form-data method=POST>
+
 
       <!-- Jumbotron Header -->
     <header class="jumbotron">
@@ -276,14 +277,14 @@
     </div>
 
       </header>
-  </form>
-</div>
+    </div>
+</form>
       <!-- Page Features -->
       <div class="row text-center">
         {% for post in posts %}
         <div class="col-lg-6 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <img class="card-img-top" src="static/img/{{ post['filename'] }}" alt="">
             <div class="card-body">
               <h4 class="card-title">Title</h4>
               <p class="card-text">{{ post['caption'] }}</p>
