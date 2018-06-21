@@ -72,10 +72,10 @@ def signup():
 def post():
     if request.method == 'POST' and 'photo' in request.files:
         filename = photos.save(request.files['photo'])
-        if file.filename == '':
-            flash('No selected photo')
-            return redirect(url_for('feed'))
         file = request.files['photo']
+        if file.filename == '':
+            return redirect(url_for('feed'))
+            flash('No selected photo')
         post = Posts(caption=request.form['caption'],filename=filename,username=session['username'],category=request.form.getlist('category')[0],date=datetime.datetime.utcnow())
         post.save()
         flash('Your new post is up!')
