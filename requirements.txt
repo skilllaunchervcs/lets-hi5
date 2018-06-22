@@ -23,6 +23,7 @@ Flask-Mail==0.9.1
 Flask-MongoAlchemy==0.7.2
 Flask-PyMongo==0.5.2
 Flask-SQLAlchemy==2.3.2
+Flask-Testing==0.7.1
 Flask-Uploads==0.2.1
 Flask-WTF==0.14.2
 future==0.16.0
@@ -37,6 +38,7 @@ jmespath==0.9.3
 kappa==0.6.0
 lambda-packages==0.20.0
 MarkupSafe==1.0
+mongo==0.2.0
 MongoAlchemy==0.19
 paramiko==2.4.1
 placebo==0.8.1
