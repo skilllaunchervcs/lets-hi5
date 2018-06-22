@@ -39,10 +39,7 @@ configure_uploads(app,photos)
 
 @app.route('/signin',methods=['POST','GET'])
 def signin():
-    # check if logged in
-    if session['username']:
-        return redirect(url_for('feed'))
-        # check if hashes match and set session variables
+    # check if hashes match and set session variables
     if request.method == 'POST':
         user = User.query.filter_by(username=request.form['username']).first()
         if bcrypt.hashpw(request.form['password'].encode('utf-8'),user.password.encode('utf-8')) == user.password.encode('utf-8'):
@@ -53,16 +50,16 @@ def signin():
 
 @app.route('/signup',methods=['POST','GET'])
 def signup():
-    # check if logged in
-    if session['username']:
-        return redirect(url_for('feed'))
     # store hashed password and credentials for POST request
     if request.method == 'POST':
         hashed_password = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt(10))
-        user_data= User(email=request.form['username'],username=request.form['username'],password=hashed_password.decode('utf-8'),display_picture="sqr.png")
+        user_data= User(email=request.form['email'],username=request.form['username'],password=hashed_password.decode('utf-8'),display_picture="sqr.png")
         user_data.save()
         flash('Signup Success!')
         return redirect(url_for('signin'))
+    # check if logged in
+    if session['username']:
+        return redirect(url_for('feed'))
     # render form for GET
     return render_template('forms/SignUp.html')
 
