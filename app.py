@@ -37,6 +37,10 @@ photos = UploadSet('photos',IMAGES)
 app.config['UPLOADED_PHOTOS_DEST']='static/img'
 configure_uploads(app,photos)
 
+@app.route('/',methods=['POST','GET'])
+def home():
+    return redirect(url_for('signin'))
+
 @app.route('/signin',methods=['POST','GET'])
 def signin():
     # check if hashes match and set session variables
@@ -52,14 +56,19 @@ def signin():
 def signup():
     # store hashed password and credentials for POST request
     if request.method == 'POST':
+        users = User.query.all()
+        for user in users:
+            if user.username == request.form['username']:
+                flash('Username already exists. Please pick another one')
+                return redirect(url_for('signup'))
+            elif len(request.form['password'])<8:
+                flash('Please provide a password which is atleast 8 characters long')
+                return redirect(url_for('signup'))
         hashed_password = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt(10))
         user_data= User(email=request.form['email'],username=request.form['username'],password=hashed_password.decode('utf-8'),display_picture="sqr.png")
         user_data.save()
         flash('Signup Success!')
         return redirect(url_for('signin'))
-    # check if logged in
-    if session['username']:
-        return redirect(url_for('feed'))
     # render form for GET
     return render_template('forms/SignUp.html')
 
@@ -96,11 +105,12 @@ def post():
 
 @app.route('/feed')
 def feed():
-    if session['username']:
-        posts = Posts.query.all() # Get all posts which have been uploaded
-        return render_template('pages/feed.html',posts=posts)
-    else:
-        flash('Nothing here. Please login here or sign up by clicking the corresponding link below')
+    try:
+        if session['username']:
+            posts = Posts.query.all() # Get all posts which have been uploaded
+            return render_template('pages/feed.html',posts=posts)
+
+    except KeyError:
         return redirect(url_for('signin'))
 
 
