@@ -64,12 +64,19 @@ def signup():
             if user.username == request.form['username']:
                 flash('Username already exists. Please pick another one')
                 return redirect(url_for('signup'))
+
             elif len(request.form['password'])<8:
                 flash('Please provide a password which is atleast 8 characters long')
                 return redirect(url_for('signup'))
+
+            elif request.form['password']!=request.form['repeat_password']:
+                flash('Passwords mismatch. Please try again')
+                return redirect(url_for('signup'))
+
         hashed_password = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt(10))
         user_data= User(email=request.form['email'],username=request.form['username'],password=hashed_password.decode('utf-8'),display_picture="sqr.png")
         user_data.save()
+
         flash('Signup Success!')
         return redirect(url_for('signin'))
     # render form for GET
@@ -93,7 +100,9 @@ def post():
     # save filename using Upload set object 'photos'
     if request.method == 'POST' and 'photo' in request.files:
         filename = photos.save(request.files['photo'])
+
         file = request.files['photo']
+
         if file.filename == '': # check if there's a file enqueued
             return redirect(url_for('feed'))
             flash('No selected photo')
