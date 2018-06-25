@@ -49,6 +49,9 @@ def signin():
         if bcrypt.hashpw(request.form['password'].encode('utf-8'),user.password.encode('utf-8')) == user.password.encode('utf-8'):
             session['username'] = request.form['username']
             return redirect(url_for('feed'))
+        else:
+            flash('Incorrect Credentials Entered')
+            return redirect(url_for('signin'))
     return render_template('forms/SignIn.html')
 
 
@@ -178,16 +181,20 @@ def change_password():
     if request.method=='POST':
         user = User.query.filter(User.username == session['username']).first()
         if bcrypt.hashpw(request.form['current_password'].encode('utf-8'),user.password.encode('utf-8')) == user.password.encode('utf-8'):
-            hashed_new_password = bcrypt.hashpw(request.form['new_password'].encode('utf-8'), bcrypt.gensalt(10))
-            hashed_new_repeat_password = bcrypt.hashpw(request.form['repeat_password'].encode('utf-8'), bcrypt.gensalt(10))
-        else:
-            flash('Current password has been entered incorrectly')
-            return redirect(url_for('change_username'))
-            if hashed_new_password.decode('utf-8') == hashed_new_repeat_password.decode('utf-8'):
+
+            if request.form['new_password'] == request.form['repeat_password']:
+                hashed_new_password = bcrypt.hashpw(request.form['new_password'].encode('utf-8'), bcrypt.gensalt(10))
                 user.password = hashed_new_password.decode('utf-8')
                 user.save()
                 flash('Password successfully changed')
                 return redirect(url_for('your_profile'))
+            else:
+                flash('New passwords do not match. Please try again.')
+                return redirect(url_for('settings'))
+
+        else:
+            flash('Current password has been entered incorrectly')
+            return redirect(url_for('settings'))
 
 
 

@@ -202,7 +202,7 @@
   <!-- <div class="card" style="padding: 50px;">
     <div class="card-body" style="text-align:center;"> -->
       <h3 style="color:gray">Change Password</h3>
-        <form action="{{ url_for('change_password') }}">
+        <form action="{{ url_for('change_password') }}" method="POST">
         <br>
         <input type="password" name="current_password" placeholder="Current Password" style="margin-bottom: 10px" class="form-control input-md" required>
         <br>

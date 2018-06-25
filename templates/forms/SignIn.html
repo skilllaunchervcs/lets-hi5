@@ -52,6 +52,22 @@
     <div class="card-header" style="text-align: center; background-color: white">
     <img src="/static/img/hi5logo.png">
     </div>
+		<!-- flash -->
+		<div class="container-fluid" style="min-height:100%">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+					<div class="alert alert-warning alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						{{ message }}
+					</div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+		</div>
+		<!--//flash-->	
     <div class="card-body" style="text-align:center;">
         <h3 style="color:gray">Sign In</h3>
         <form action="{{ url_for('signin') }}" method="POST">
