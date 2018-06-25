@@ -160,12 +160,13 @@ def change_username():
     if request.method=='POST':
         if request.form['current_username'] != session['username']:
             flash('Please enter the current username currently')
+            return redirect(redirect())
         user = User.query.filter(User.username == session['username']).first()
-        user.username = request.form['new_password']
+        user.username = request.form['new_username']
         user.save()
         return redirect(url_for('your_profile'))
 
-@app.route('change_password',methods=['POST'])
+@app.route('/change_password',methods=['POST'])
 def change_password():
     if request.method=='POST':
         user = User.query.filter(User.username == session['username']).first()
