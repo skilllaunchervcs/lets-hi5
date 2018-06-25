@@ -80,18 +80,7 @@
   </head>
 
   <body>
-    <!-- flash -->
-        {% with messages = get_flashed_messages() %}
-           {% if messages %}
-              {% for message in messages %}
-              <div class="alert alert-block alert-error fade in">
-               <a class="close" data-dismiss="alert">&times;</a>
-               {{ message }}
-             </div>
-              {% endfor %}
-           {% endif %}
-        {% endwith %}
-    <!--//flash   -->
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -135,7 +124,23 @@
         </div>
       </div>
     </nav>
-
+    <br>
+    <!-- flash -->
+    <div class="container-fluid" style="min-height:100%">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+          </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+    <!--//flash-->
     <div class="container" id="myTabs">
     <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
   <li class="nav-item">

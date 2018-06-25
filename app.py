@@ -153,17 +153,24 @@ def profile_photo():
         user = User.query.filter(User.username == session['username']).first()
         user.display_picture = filename
         user.save()
+        flash('Profile Picture Updated')
         return redirect(url_for('your_profile'))
 
 @app.route('/change_username',methods=['POST'])
 def change_username():
     if request.method=='POST':
         if request.form['current_username'] != session['username']:
-            flash('Please enter the current username currently')
-            return redirect(redirect())
+            flash('Existing username entered incorrectly')
+            return redirect(url_for('settings'))
         user = User.query.filter(User.username == session['username']).first()
+        posts = Posts.query.filter(Posts.username==session['username']).all()
+        for post in posts:
+            post.username = request.form['new_username']
+            post.save()
         user.username = request.form['new_username']
         user.save()
+        session['username'] =  request.form['new_username']
+        flash('Username has been changed successfully')
         return redirect(url_for('your_profile'))
 
 @app.route('/change_password',methods=['POST'])
