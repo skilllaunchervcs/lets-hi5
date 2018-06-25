@@ -145,7 +145,7 @@
   <!-- <div class="card" style="padding: 50px;"> -->
     <!-- <div class="card-body" style="text-align:center;"> -->
       <h3 style="color:gray">Change Profile Photo</h3>
-        <form action="Settings.html">
+        <form action="{{ url_for('profile_photo') }}" method="POST" enctype="multipart/form-data">
         <br>
         <input type="file" name="profilephoto" style="margin-bottom: 10px" class="form-control input-md" required>
         <br>

@@ -111,6 +111,7 @@ def feed():
             return render_template('pages/feed.html',posts=posts)
 
     except KeyError:
+        flash('You need to login to access your feed')
         return redirect(url_for('signin'))
 
 
@@ -132,11 +133,28 @@ def profile(username):
 @app.route('/your_profile',methods=['POST','GET'])
 def your_profile():
     posts= Posts.query.filter(Posts.username == session['username']).all()
-    return render_template('pages/YourProfile.html',posts=posts)
+    return render_template('pages/YourProfile.html',posts=posts,profile_photo=User.query.filter(User.username==session['username']).first().display_picture)
 
 @app.route('/settings',methods=['POST','GET'])
 def settings():
     return render_template('pages/settings.html')
+
+#############################################################
+
+@app.route('/profile_photo',methods=['POST'])
+def profile_photo():
+    if request.method =='POST' and 'profilephoto' in request.files:
+        filename = photos.save(request.files['profilephoto'])
+        file = request.files['profilephoto']
+        if file.filename=='':
+            flash('Please upload a picture before submission')
+            return redirect(url_for('profile_photo'))
+        user = User.query.filter(User.username == session['username']).first()
+        user.display_picture = filename
+        user.save()
+        return redirect(url_for('your_profile'))
+
+
 
 
 # Error handlers.

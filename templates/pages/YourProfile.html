@@ -220,8 +220,8 @@
       <header class="jumbotron my-4 row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h1 class="display-3">
-            <img src="/static/img/sqr.png" style="width:50px;">
-          johndoe
+            <img src="{{ url_for('static',filename='img/'+profile_photo) }}" style="width:50px;">
+          {{ session['username'] }}
               <a class="btn btn-default" data-toggle="modal" data-target="#settings"><i class="fas fa-cog" style="font-size: 32px;"></i></a>
           </h1>
           </div>
