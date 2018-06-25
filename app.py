@@ -140,6 +140,7 @@ def settings():
     return render_template('pages/settings.html')
 
 #############################################################
+#edit profile methods
 
 @app.route('/profile_photo',methods=['POST'])
 def profile_photo():
@@ -154,9 +155,37 @@ def profile_photo():
         user.save()
         return redirect(url_for('your_profile'))
 
+@app.route('/change_username',methods=['POST'])
+def change_username():
+    if request.method=='POST':
+        if request.form['current_username'] != session['username']:
+            flash('Please enter the current username currently')
+        user = User.query.filter(User.username == session['username']).first()
+        user.username = request.form['new_password']
+        user.save()
+        return redirect(url_for('your_profile'))
+
+@app.route('change_password',methods=['POST'])
+def change_password():
+    if request.method=='POST':
+        user = User.query.filter(User.username == session['username']).first()
+        if bcrypt.hashpw(request.form['current_password'].encode('utf-8'),user.password.encode('utf-8')) == user.password.encode('utf-8'):
+            hashed_new_password = bcrypt.hashpw(request.form['new_password'].encode('utf-8'), bcrypt.gensalt(10))
+            hashed_new_repeat_password = bcrypt.hashpw(request.form['repeat_password'].encode('utf-8'), bcrypt.gensalt(10))
+        else:
+            flash('Current password has been entered incorrectly')
+            return redirect(url_for('change_username'))
+            if hashed_new_password.decode('utf-8') == hashed_new_repeat_password.decode('utf-8'):
+                user.password = hashed_new_password.decode('utf-8')
+                user.save()
+                flash('Password successfully changed')
+                return redirect(url_for('your_profile'))
 
 
 
+
+
+###################################
 # Error handlers.
 
 

@@ -164,11 +164,11 @@
   <!-- <div class="card" style="padding: 50px;"> -->
     <!-- <div class="card-body" style="text-align:center;"> -->
       <h3 style="color:gray">Change Username</h3>
-        <form action="Settings.html">
+        <form action="{{ url_for('change_username') }}" method="POST">
         <br>
-        <input type="text" name="username" placeholder="Current Userame" style="margin-bottom: 10px" class="form-control input-md" required>
+        <input type="text" name="current_username" placeholder="Current Username" style="margin-bottom: 10px" class="form-control input-md" required>
         <br>
-        <input type="text" name="username" placeholder="New Userame" style="margin-bottom: 10px" class="form-control input-md" required>
+        <input type="text" name="new_username" placeholder="New Username" style="margin-bottom: 10px" class="form-control input-md" required>
         <br>
         <input type="submit" class="btn btn-primary" name="submit">
         <br>
@@ -186,13 +186,13 @@
   <!-- <div class="card" style="padding: 50px;">
     <div class="card-body" style="text-align:center;"> -->
       <h3 style="color:gray">Change Password</h3>
-        <form action="Settings.html">
+        <form action="{{ url_for('change_password') }}">
         <br>
-        <input type="password" name="password" placeholder="Current Password" style="margin-bottom: 10px" class="form-control input-md" required>
+        <input type="password" name="current_password" placeholder="Current Password" style="margin-bottom: 10px" class="form-control input-md" required>
         <br>
-        <input type="password" name="password" placeholder="New Password" style="margin-bottom: 10px" class="form-control input-md" required>
+        <input type="password" name="new_password" placeholder="New Password" style="margin-bottom: 10px" class="form-control input-md" required>
         <br>
-        <input type="password" name="password" placeholder="Reenter New Password" style="margin-bottom: 10px" class="form-control input-md" required>
+        <input type="password" name="repeat_password" placeholder="Reenter New Password" style="margin-bottom: 10px" class="form-control input-md" required>
         <br>
         <input type="submit" class="btn btn-primary" name="submit">
         <br>
