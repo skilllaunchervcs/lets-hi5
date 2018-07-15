@@ -22,8 +22,10 @@ from sqlalchemy.pool import StaticPool
 import boto3,botocore
 import string
 from flask_mongoalchemy import MongoAlchemy
+from flask_socketio import SocketIO, emit, send
 from werkzeug.utils import secure_filename
 import config
+
 #-----------------------------------------a-----------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
@@ -31,6 +33,7 @@ import config
 app = Flask(__name__)
 app.config.from_object('config')
 bootstrap = Bootstrap(app)
+socketio = SocketIO(app)
 
 # file upload config
 photos = UploadSet('photos',IMAGES)
@@ -109,7 +112,10 @@ def post():
         # save in database
         post = Posts(caption=request.form['caption'],filename=filename,username=session['username'],category=request.form.getlist('category')[0],date=datetime.datetime.utcnow())
         post.save()
-        flash('Your new post is up!')
+        flash('You new post is up!')
+
+
+
         return redirect(url_for('feed'))
     elif 'photo' not in request.files:
             flash('An error occurred while uploading')
@@ -119,8 +125,9 @@ def post():
 def feed():
     try:
         if session['username']:
-            posts = Posts.query.all() # Get all posts which have been uploaded
-            return render_template('pages/feed.html',posts=posts)
+            posts = Posts.query.all()
+            users = User.query.all() # Get all posts which have been uploaded
+            return render_template('pages/feed.html',posts=posts,users=users)
 
     except KeyError:
         flash('You need to login to access your feed')
@@ -204,15 +211,21 @@ def change_password():
         else:
             flash('Current password has been entered incorrectly')
             return redirect(url_for('settings'))
+######################################
+#chat
 
+@app.route('/chat',methods=['POST','GET'])
+def chat():
+    return render_template('pages/chat.html',contacts=User.query.filter(User.username!=session['username']).all())
 
-
+@socketio.on('message')
+def handle_message(message):
+    print('Message: '+message)
+    send(msg)
 
 
 ###################################
 # Error handlers.
-
-
 @app.errorhandler(500)
 def internal_error(error):
     #db_session.rollback()
@@ -238,7 +251,7 @@ if not app.debug:
 #----------------------------------------------------------------------------#
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app)
 
 # Or specify port manually:
 '''
