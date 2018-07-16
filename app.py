@@ -4,6 +4,7 @@
 
 
 from flask import Flask,flash,Blueprint,render_template,request,redirect,session,url_for,abort,send_file,safe_join
+from flask_dance.contrib.twitter import make_twitter_blueprint, twitter
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 import logging
@@ -22,7 +23,6 @@ from sqlalchemy.pool import StaticPool
 import boto3,botocore
 import string
 from flask_mongoalchemy import MongoAlchemy
-from flask_socketio import SocketIO, emit, send
 from werkzeug.utils import secure_filename
 import config
 
@@ -33,12 +33,13 @@ import config
 app = Flask(__name__)
 app.config.from_object('config')
 bootstrap = Bootstrap(app)
-socketio = SocketIO(app)
+twitter_blueprint = make_twitter_blueprint(api_key='uQyFwItPPYK9EpXsurufWm52O', api_secret='lpe1StRf9QXhn8hsu2EQfh9KFwAd8hGMmZi7qHzpxZYfwSqh7Y')
 
 # file upload config
 photos = UploadSet('photos',IMAGES)
 app.config['UPLOADED_PHOTOS_DEST']='static/img'
 configure_uploads(app,photos)
+app.register_blueprint(twitter_blueprint, url_prefix="/twitter_login")
 
 @app.route('/',methods=['POST','GET'])
 def home():
@@ -85,11 +86,19 @@ def signup():
     # render form for GET
     return render_template('forms/SignUp.html')
 
+@app.route('/twitter')
+def twitter_login():
+    if not twitter.authorized:
+        return redirect(url_for('twitter.login'))
+    account_info = twitter.get('account/settings.json')
 
-@app.route('/forgot')
-def forgot():
-    form = ForgotForm(request.form)
-    return render_template('forms/forgot.html', form=form)
+    if account_info.ok:
+        account_info_json = account_info.json()
+
+        return '<h1>Your Twitter name is @{}'.format(account_info_json['screen_name'])
+
+    return '<h1>Request failed!</h1>'
+
 
 @app.route('/logout')
 def logout():
@@ -112,10 +121,7 @@ def post():
         # save in database
         post = Posts(caption=request.form['caption'],filename=filename,username=session['username'],category=request.form.getlist('category')[0],date=datetime.datetime.utcnow())
         post.save()
-        flash('You new post is up!')
-
-
-
+        flash('Your new post is up!')
         return redirect(url_for('feed'))
     elif 'photo' not in request.files:
             flash('An error occurred while uploading')
@@ -125,9 +131,8 @@ def post():
 def feed():
     try:
         if session['username']:
-            posts = Posts.query.all()
-            users = User.query.all() # Get all posts which have been uploaded
-            return render_template('pages/feed.html',posts=posts,users=users)
+            posts = Posts.query.all() # Get all posts which have been uploaded
+            return render_template('pages/feed.html',posts=posts)
 
     except KeyError:
         flash('You need to login to access your feed')
@@ -211,21 +216,46 @@ def change_password():
         else:
             flash('Current password has been entered incorrectly')
             return redirect(url_for('settings'))
-######################################
-#chat
 
-@app.route('/chat',methods=['POST','GET'])
-def chat():
-    return render_template('pages/chat.html',contacts=User.query.filter(User.username!=session['username']).all())
+@app.route('/forgot',methods=['POST','GET'])
+def forgot():
+    forgot_url = url_for('reset',_external=True)
+    if request.method == 'POST':
+        users = User.query.all()
+        for user in users:
+            if user.email == form.email.data:
+                msg = Message('Reset Password',sender='skilllauncher7@gmail.com',recipients=[form.email.data])
+                msg.html=render_template('pages/forgot_password.html',forgot_url=forgot_url, _external=True)
+                mail.send(msg)
+                session.clear()
+                session['user_email'] = form.email.data
+                flash('A reset confirmation e-mail has been sent to the specified email address')
+                return redirect(url_for('home'))
+        flash('The provided mail is not a valid email address.')
+        return redirect(url_for('forgot'))
+    if request.method == 'GET':
+        return render_template('forms/forgot.html', form=form)
 
-@socketio.on('message')
-def handle_message(message):
-    print('Message: '+message)
-    send(msg)
 
-
+@app.route('/reset',methods=['POST','GET'])
+def reset():
+    if request.method=='POST':
+        if form.password.data!=form.repeat_password.data:
+            flash('Passwords do not match')
+            return redirect(url_for('reset'))
+        hashed_password_new = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt(10))
+        data = User.query.filter_by(email=session['email']).first()
+        data.password=hashed_password_new
+        data.save()
+        session.clear()
+        flash('Your password has been reset successfully. Please login with the updated credentials.')
+        return redirect(url_for('login'))
+    else:
+        return render_template('forms/reset.html')
 ###################################
 # Error handlers.
+
+
 @app.errorhandler(500)
 def internal_error(error):
     #db_session.rollback()
@@ -251,7 +281,7 @@ if not app.debug:
 #----------------------------------------------------------------------------#
 
 if __name__ == '__main__':
-    socketio.run(app)
+    app.run(debug=True)
 
 # Or specify port manually:
 '''
