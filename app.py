@@ -82,12 +82,6 @@ def signup():
     # render form for GET
     return render_template('forms/SignUp.html')
 
-
-@app.route('/forgot')
-def forgot():
-    form = ForgotForm(request.form)
-    return render_template('forms/forgot.html', form=form)
-
 @app.route('/logout')
 def logout():
     # clear all session variables
@@ -205,10 +199,41 @@ def change_password():
             flash('Current password has been entered incorrectly')
             return redirect(url_for('settings'))
 
+@app.route('/forgot',methods=['POST','GET'])
+def forgot():
+    forgot_url = url_for('reset',_external=True)
+    if request.method == 'POST':
+        users = User.query.all()
+        for user in users:
+            if user.email == form.email.data:
+                msg = Message('Reset Password',sender='skilllauncher7@gmail.com',recipients=[form.email.data])
+                msg.html=render_template('pages/forgot_password.html',forgot_url=forgot_url, _external=True)
+                mail.send(msg)
+                session.clear()
+                session['user_email'] = form.email.data
+                flash('A reset confirmation e-mail has been sent to the specified email address')
+                return redirect(url_for('home'))
+        flash('The provided mail is not a valid email address.')
+        return redirect(url_for('forgot'))
+    if request.method == 'GET':
+        return render_template('forms/forgot.html', form=form)
 
 
-
-
+@app.route('/reset',methods=['POST','GET'])
+def reset():
+    if request.method=='POST':
+        if form.password.data!=form.repeat_password.data:
+            flash('Passwords do not match')
+            return redirect(url_for('reset'))
+        hashed_password_new = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt(10))
+        data = User.query.filter_by(email=session['email']).first()
+        data.password=hashed_password_new
+        data.save()
+        session.clear()
+        flash('Your password has been reset successfully. Please login with the updated credentials.')
+        return redirect(url_for('login'))
+    else:
+        return render_template('forms/reset.html')
 ###################################
 # Error handlers.
 
