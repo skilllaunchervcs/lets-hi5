@@ -20,3 +20,9 @@ class Posts(db.Document):
     filename = db.StringField()
     category = db.StringField()
     date = db.DateTimeField()
+
+class Chat(db.Document):
+    content = db.StringField()
+    date = db.DateTimeField()
+    from_user = db.StringField()
+    to_user = db.StringField()
