@@ -67,7 +67,7 @@
             </pre>
              </li>
             <li>
-              <a style="color:white;" href="{{url_for('chat')}}"><i style="padding-top:20px;" class="fas fa-envelope"></i> Messeges</a>
+              <a style="color:white;" href="{{ url_for('chat_interests') }}"><i style="padding-top:20px;" class="fas fa-envelope"></i> Messeges</a>
             </li>
 			<li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white; padding-top: 16px"> <i class="fas fa-user"></i> My Account</a>
@@ -305,7 +305,7 @@
                 {% endif %}
               {% endfor %}
               <i>{{ post['username'] }}</i>
-              <a data-toggle="modal" data-target="#hi5">
+              <a href="{{ url_for('chat_interests') }}">
                 {% if post['username']!= session['username'] %}
                 <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
                 {% endif %}
@@ -321,49 +321,6 @@
     <!-- /.container -->
 
 
-<!--Live Chat-->
-<aside id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar">
-
-      <div class="popup-head">
-          <div class="popup-head-left pull-left">
-            <img class="md-user-image" alt="John Doe" title="John Doe" src="/static/img/img_avatar1.png" title="John Doe" alt="John Doe">
-            <h1>John Doe</h1><small>
-            <div class="popup-head-right pull-right" style="float: right;color: white;">
-              <a class="btn pull-right" href="#" data-widget="remove" id="removeClass" style="color:white;"><i class="fas fa-window-close"></i></a>
-            </div>
-          </div>
-
-          <div id="chat" class="chat_box_wrapper chat_box_small chat_box_active" style="opacity: 1; display: block; transform: translateX(0px);">
-              <div class="chat_box touchscroll chat_box_colors_a">
-                  <div class="chat_message_wrapper">
-                        <div class="chat_user_avatar">
-                          <img alt="John Doe" title="John Doe"  src="/static/img/img_avatar1.png" class="md-user-image">
-                        </div>
-                      <ul class="chat_message">
-
-                      </ul>
-                            </div>
-                        </div>
-                    </div>
-<div class="chat_submit_box">
-    <div class="uk-input-group">
-        <div class="new-chat-box">
-        <span style="vertical-align: sub;" class="uk-input-group-addon">
-        <a href="#"><i class="fa fa-smile-o"></i></a>
-        </span>
-        <input type="text" placeholder="Type a message" id="submit_message" name="submit_message" class="md-input">
-        <span style="vertical-align: sub;" class="uk-input-group-addon">
-        <a href="#"><i class="fa fa-camera"></i></a>
-        </span>
-        </div>
-        <a class="btn pull-right" href="#" style="color:white;"><i class="fas fa-share-square"></i></a>
-    </div>
-</div>
-</div>
-</small>
-</div>
-</div>
-</aside>
 </header></div>
 
     <!-- Footer -->

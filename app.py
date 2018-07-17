@@ -240,7 +240,14 @@ def forgot():
 
 @app.route('/chat',methods=['POST','GET'])
 def chat():
-    return render_template('pages/chat.html',users=User.query.filter(User.username!=session['username']).all())
+    if request.method == 'POST':
+        session['interest_current'] = request.form.get('option')
+        return render_template('pages/chat.html',messages=Chat.query.filter(Chat.user_interest==request.form.get('option')).all())
+
+
+@app.route('/chat_interests',methods=['POST','GET'])
+def chat_interests():
+    return render_template('pages/chat_interests.html')
 
 @app.route('/reset',methods=['POST','GET'])
 def reset():
@@ -264,7 +271,9 @@ def reset():
 @socketio.on('message')
 def handle_message(message):
     print('Message: '+message)
-    send(message)
+    send(message,broadcast=True)
+    message = Chat(message,datetime.datetime.now(),session['username'],session['interest_current'])
+    message.save()
 
 
 

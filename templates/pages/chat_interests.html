@@ -144,9 +144,43 @@
     </div>
     <!--//flash-->
     <!-- chat -->
-	<ul id="messages"></ul>
-	<input type="text" id="myMessage"><br><br>
-	<button id="sendbutton">Send</button>
+    <form action="{{ url_for('chat')}}" method="POST">
+    <table class="table-bordered" align="center">
+      <tr>
+        <td>
+    <label><input type="checkbox" name="option" value="food-drink"> <i class="fas fa-lg fa-utensils"></i> Food and Drink</label>
+        </td>
+        <td>
+    <label><input type="checkbox" name="option" value="diy"> <i class="fas fa-lg fa-cut"></i> DIY and Crafts</label>
+        </td>
+    <td>
+    <label><input type="checkbox" name="option" value="home-decor"> <i class="fas fa-lg fa-home"></i> Home Decor</label>
+        </td>
+      </tr>
+      <tr>
+
+        <td>
+    <label><input type="checkbox" name="option" value="fashion"> <i class="fas fa-lg fa-tshirt"></i> Fashion</label>
+        </td>
+    <td>
+    <label><input type="checkbox" name="option" value="quotes"> <i class="fas fa-lg fa-quote-right"></i> Quotes</label>
+        </td>
+        <td>
+    <label><input type="checkbox" name="option" value="health"> <i class="fas fa-lg fa-dumbbell"></i> Health and Fitness</label></td>
+      </tr>
+      <tr>
+          <td>
+    <label><input type="checkbox" name="option" value="humor"> <i class="fas fa-lg fa-smile"></i> Humor</label>
+          </td>
+          <td>
+    <label><input type="checkbox" name="option" value="travel"> <i class="fas fa-lg fa-helicopter"></i> Travel</label>
+          </td>
+    <td>
+    <label><input type="checkbox" name="option" value="video-games"> <i class="fas fa-lg fa-gamepad"></i> Video Games</label></td>
+      </tr>
+    </table>
+    <input type="submit">
+  </form>
 		<!-- //chat -->
 
     <!--Help??-->

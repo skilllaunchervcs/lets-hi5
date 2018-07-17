@@ -24,5 +24,5 @@ class Posts(db.Document):
 class Chat(db.Document):
     content = db.StringField()
     date = db.DateTimeField()
-    from_user = db.StringField()
-    to_user = db.StringField()
+    user = db.StringField()
+    user_interest = db.StringField()

@@ -144,28 +144,13 @@
     </div>
     <!--//flash-->
     <!-- chat -->
-    <div class="row text-center">
-      {% for user in users %}
-      <div class="col-lg-6 col-md-6 mb-4">
-        <div class="card">
-          <img class="card-img-top" src="/static/img/{{ user['display_picture'] }}" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Title</h4>
-            <p class="card-text">{{ user['username'] }}</p>
-          </div>
-          <div class="card-footer">
-            <i>{{ user['email'] }}</i>
-            <a data-toggle="modal" data-target="#hi5">
-              <i class="far fa-lg fa-hand-paper" style="float:right; padding-top: 10px;"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-
-    <!-- /.row -->
-
-  </div>
+	<ul id="messages">
+    {% for message in messages %}
+    <h3>({{ message['date'] }})</h3> <h2>{{ message['user'] }}</h2>: {{ message }}
+    {% endfor %}
+  </ul>
+	<input type="text" id="myMessage"><br><br>
+	<button id="sendbutton">Send</button>
 		<!-- //chat -->
 
     <!--Help??-->
@@ -338,6 +323,24 @@
     </script>
 <!--  socketio -->
 <script type="text/javascript">
+$(document).ready(function() {
+
+	var socket = io.connect('http://127.0.0.1:5000');
+	socket.on('connect', function() {
+		socket.send('{{ session['username'] }}'+' has connected!');
+	});
+
+	socket.on('message', function(msg) {
+		$("#messages").append('<li>'+msg+'</li>');
+		console.log('Received message');
+	});
+
+	$('#sendbutton').on('click', function() {
+		socket.send($('#myMessage').val());
+		$('#myMessage').val('');
+	});
+
+});
 
 </script>
 <!-- //socketio -->
