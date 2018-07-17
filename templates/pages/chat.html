@@ -1,36 +1,96 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset='UTF-8'><meta name="robots" content="noindex">
-	<link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
-	<link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
-	<link rel="canonical" href="https://codepen.io/emilcarlsson/pen/ZOQZaV?limit=all&page=74&q=contact+" />
-	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<html lang="en">
 
-<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
+  <head>
 
-<script src="https://use.typekit.net/hoy3lrg.js"></script>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
-<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
-<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-<link rel="stylesheet" type="text/css" href="FinalAssignment.css">
-<link rel="stylesheet" type="text/css" href="chat.css"/>
-</head>
 
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <!-- Navigation -->
+    <title>Chat </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/FinalAssignment.css')}}">
+
+    <style type="text/css">
+      .flexbox-container
+      {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%,-50%,0);
+      }
+      body
+      {
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      }
+      input
+      {
+      width:100%;
+      }
+      #myTabs
+      {
+      max-width: 1000px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%,-50%,0);
+      border:1px solid rgba(0,0,0,.125);
+      }
+      #myTab{
+        float: left;
+        max-width: 300px;
+        border-right: 1px solid rgba(0,0,0,.125);
+        /*border:1px solid rgba(0,0,0,.125);*/
+      }
+      #myTab li
+      {
+        padding:50px;
+      }
+        @media(max-width: 1204px){
+        #myTabs{
+          border:0px;
+        }
+        .flexbox-container
+        {
+          padding: 50px;
+          border:1px solid rgba(0,0,0,.125);
+        }
+      }
+      @media(max-width: 1204px){
+        #myTab{
+          display:none;
+        }
+      }
+      @media(max-width: 450px){
+        #search{
+          display:none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="FinalAssignment.html"><img style="height:40px" src="Hi5logo.png"></a>
+        <a class="navbar-brand" href="{{url_for('feed')}}"><img style="height:40px" src="/static/img/Hi5logo.png"></a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
              <form class="form-inline" action="#">
-             <input class="form-control mr-sm-2" type="text" id="search" placeholder="Search">
+             <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search">
               </form>
             </li>
           </ul>
@@ -40,207 +100,55 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <pre class=form-inline>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-utensils"></i> </a>  
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-cut"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-home"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-tshirt"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-quote-right"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-dumbbell"></i> </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-smile"></i>  </a>
-            <a style="color:white;" href="CategoryPage.html"><br/><i class="fas fa-lg fa-helicopter"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="Food & Drinks" href="{{ url_for('category',category="food-drink") }}"><br/><i class="fas fa-lg fa-utensils" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="DIY and Crafts" href="{{ url_for('category',category="diy") }}"><br/><i class="fas fa-lg fa-cut" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+              <a style="color:white; text-decoration: none!important;" title="Home Decor" href="{{ url_for('category',category="home-decor") }}"><br/><i class="fas fa-lg fa-home" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="Fashion" href="{{ url_for('category',category="fashion") }}"><br/><i class="fas fa-lg fa-tshirt" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="Quotes" href="{{ url_for('category',category="quotes") }}"><br/><i class="fas fa-lg fa-quote-right" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+              <a style="color:white; text-decoration: none!important;" title="Health and Fitness" href="{{ url_for('category',category="health") }}"><br/><i class="fas fa-lg fa-dumbbell" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="Humor" href="{{ url_for('category',category="humor") }}"><br/><i class="fas fa-lg fa-smile" style="font-size: 1.5em; padding-right:5px;"></i>  </a>
+              <a style="color:white; text-decoration: none!important;" title="Travel" href="{{ url_for('category',category="travel") }}"><br/><i class="fas fa-lg fa-helicopter" style="font-size: 1.5em; padding-right:5px;"></i> </a>
+              <a style="color:white; text-decoration: none!important;" title="Video Games" href="{{ url_for('category',category="video-games") }}"><br/><i class="fas fa-lg fa-gamepad" style="font-size: 1.5em; padding-right:5px;"></i> </a>
             </pre>
              <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white; padding-top: 16px"> <i class="fas fa-user"></i></a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" class="btn btn-default" href="Profile.html">Profile</a>
+        <a class="dropdown-item" class="btn btn-default" href="{{url_for('your_profile')}}">Profile</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#help">Help?</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#about">About</a>
         <a class="dropdown-item" class="btn btn-default" data-toggle="modal" data-target="#logout">Logout</a>
       </div>
       </li>
             <li class="nav-item">
-              <a style="color:white;" href="chat.html"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>  
+              <a style="color:white;" href="#"><i style="padding-top:20px;" class="fas fa-envelope"></i></a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-<div class="container">
+    <br>
+    <!-- flash -->
+    <div class="container-fluid" style="min-height:100%">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+          </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+    <!--//flash-->
+    <!-- chat -->
+	<ul id="messages"></ul>
+	<input type="text" id="myMessage"><br><br>
+	<button id="sendbutton">Send</button>
+		<!-- //chat -->
 
-<div id="frame">
-	<div id="sidepanel">
-		<div id="profile">
-			<div class="wrap">
-				<img id="profile-img" src="img_avatar1.png" class="online" alt="" />
-				<p>John Doe</p>
-			</div>
-		</div>
-		<div id="search">
-			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-			<input type="text" placeholder="Search contacts..." />
-		</div>
-		<div id="contacts">
-			<ul>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status online"></span>
-						<img src="img_avatar1.png" alt="" />
-						<div class="meta">
-							<p class="name">John Doe</p>
-							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae..</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact active">
-					<div class="wrap">
-						<span class="contact-status busy"></span>
-						<img src="img_avatar1.png" alt="" />
-						<div class="meta">
-							<p class="name">John Doe</p>
-							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status away"></span>
-						<img src="img_avatar1.png" alt="" />
-						<div class="meta">
-							<p class="name">John Doe</p>
-							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status online"></span>
-						<img src="img_avatar1.png" alt="" />
-						<div class="meta">
-							<p class="name">John Doe</p>
-							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status busy"></span>
-						<img src="img_avatar1.png" alt="" />
-						<div class="meta">
-							<p class="name">John Doe</p>
-							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span>
-						<img src="img_avatar1.png" alt="" />
-						<div class="meta">
-							<p class="name">John Doe</p>
-							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span>
-						<img src="img_avatar1.png" alt="" />
-						<div class="meta">
-							<p class="name">John Doe</p>
-							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status busy"></span>
-						<img src="img_avatar1.png" alt="" />
-						<div class="meta">
-							<p class="name">John Doe</p>
-							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span>
-						<img src="img_avatar1.png" alt="" />
-						<div class="meta">
-							<p class="name">John Doe</p>
-							<p class="preview">Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span>
-						<img src="img_avatar1.png" alt="" />
-						<div class="meta">
-							<p class="name">John Doe</p>
-							<p class="preview"><span>You:</span> Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<div id="bottom-bar">
-			<button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
-			<button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
-		</div>
-	</div>
-	<div class="content">
-		<div class="contact-profile">
-			<img src="img_avatar1.png" alt="" />
-			<p>John Doe</p>
-			
-		</div>
-		<div class="messages">
-			<ul>
-				<li class="sent">
-					<img src="img_avatar1.png" alt="" />
-					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-				</li>
-				<li class="replies">
-					<img src="img_avatar1.png" alt="" />
-					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-				</li>
-				<li class="replies">
-					<img src="img_avatar1.png" alt="" />
-					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-				</li>
-				<li class="sent">
-					<img src="img_avatar1.png" alt="" />
-					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-				</li>
-				<li class="replies">
-					<img src="img_avatar1.png" alt="" />
-					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-				</li>
-				<li class="replies">
-					<img src="img_avatar1.png" alt="" />
-					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-				</li>
-				<li class="sent">
-					<img src="img_avatar1.png" alt="" />
-					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-				</li>
-				<li class="replies">
-					<img src="img_avatar1.png" alt="" />
-					<p>Lorem ipsum dolor sit amet, mea insolens tractatos corrumpit et, his ne patrioque repudiandae.</p>
-				</li>
-			</ul>
-		</div>
-		<div class="message-input">
-			<div class="wrap">
-			<input type="text" placeholder="Write your message..." />
-			<i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-			<button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
     <!--Help??-->
 <div class="modal" id="help">
   <div class="modal-dialog">
@@ -322,65 +230,115 @@
 </div>
 <!---->
 
+<!--Hi5-->
+<div class="modal" id="hi5">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-<script >$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Great!</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
 
-$("#profile-img").click(function() {
-	$("#status-options").toggleClass("active");
+      <!-- Modal body -->
+      <div class="modal-body">
+        You've just Hi5ed! Do you wish to connect?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" class="open-btn" id="addClass">Yeah!</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Nah!</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+<!--Block User-->
+<div class="modal" id="block">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Block User</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        The user will no longer be able to see your posts or connect with you. Are you sure you want to block the user?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <a href="FinalAssignment.html" class="btn btn-primary">Yes</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!---->
+
+
+<!--Settings-->
+  <div class="modal" id="settings">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Settings</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <a data-toggle="modal" data-target="#hi5" data-dismiss="modal">Hi5 and Connect!</a><br/>
+        <a data-toggle="modal" data-target="#block" data-dismiss="modal">Block User</a><br/>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+    <script src="/static/css/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+    </script>
+<!--  socketio -->
+<script type="text/javascript">
+$(document).ready(function() {
+
+	var socket = io.connect('http://127.0.0.1:5000');
+	socket.on('connect', function() {
+		socket.send('{{ session['username'] }}'+' has connected!');
+	});
+
+	socket.on('message', function(msg) {
+		$("#messages").append('<li>'+msg+'</li>');
+		console.log('Received message');
+	});
+
+	$('#sendbutton').on('click', function() {
+		socket.send($('#myMessage').val());
+		$('#myMessage').val('');
+	});
+
 });
 
-$(".expand-button").click(function() {
-  $("#profile").toggleClass("expanded");
-	$("#contacts").toggleClass("expanded");
-});
-
-$("#status-options ul li").click(function() {
-	$("#profile-img").removeClass();
-	$("#status-online").removeClass("active");
-	$("#status-away").removeClass("active");
-	$("#status-busy").removeClass("active");
-	$("#status-offline").removeClass("active");
-	$(this).addClass("active");
-	
-	if($("#status-online").hasClass("active")) {
-		$("#profile-img").addClass("online");
-	} else if ($("#status-away").hasClass("active")) {
-		$("#profile-img").addClass("away");
-	} else if ($("#status-busy").hasClass("active")) {
-		$("#profile-img").addClass("busy");
-	} else if ($("#status-offline").hasClass("active")) {
-		$("#profile-img").addClass("offline");
-	} else {
-		$("#profile-img").removeClass();
-	};
-	
-	$("#status-options").removeClass("active");
-});
-
-function newMessage() {
-	message = $(".message-input input").val();
-	if($.trim(message) == '') {
-		return false;
-	}
-	$('<li class="sent"><img src="img_avatar1.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
-	$('.message-input input').val(null);
-	$('.contact.active .preview').html('<span>You: </span>' + message);
-	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
-};
-
-$('.submit').click(function() {
-  newMessage();
-});
-
-$(window).on('keydown', function(e) {
-  if (e.which == 13) {
-    newMessage();
-    return false;
-  }
-});
-//# sourceURL=pen.js
 </script>
-<script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-</body></html>
+<!-- //socketio -->
+  </body>
+</html>

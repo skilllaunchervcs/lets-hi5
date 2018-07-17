@@ -4,6 +4,8 @@
 
 
 from flask import Flask,flash,Blueprint,render_template,request,redirect,session,url_for,abort,send_file,safe_join
+from flask_dance.contrib.twitter import make_twitter_blueprint, twitter
+from flask_socketio import SocketIO, emit, send
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 import logging
@@ -24,18 +26,22 @@ import string
 from flask_mongoalchemy import MongoAlchemy
 from werkzeug.utils import secure_filename
 import config
+
 #-----------------------------------------a-----------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
 
 app = Flask(__name__)
-app.config.from_object('config')
+socketio = SocketIO(app)
 bootstrap = Bootstrap(app)
+app.config.from_object('config')
+twitter_blueprint = make_twitter_blueprint(api_key='uQyFwItPPYK9EpXsurufWm52O', api_secret='lpe1StRf9QXhn8hsu2EQfh9KFwAd8hGMmZi7qHzpxZYfwSqh7Y')
 
 # file upload config
 photos = UploadSet('photos',IMAGES)
 app.config['UPLOADED_PHOTOS_DEST']='static/img'
 configure_uploads(app,photos)
+app.register_blueprint(twitter_blueprint, url_prefix="/twitter_login")
 
 @app.route('/',methods=['POST','GET'])
 def home():
@@ -81,6 +87,20 @@ def signup():
         return redirect(url_for('signin'))
     # render form for GET
     return render_template('forms/SignUp.html')
+
+@app.route('/twitter')
+def twitter_login():
+    if not twitter.authorized:
+        return redirect(url_for('twitter.login'))
+    account_info = twitter.get('account/settings.json')
+
+    if account_info.ok:
+        account_info_json = account_info.json()
+
+        return '<h1>Your Twitter name is @{}'.format(account_info_json['screen_name'])
+
+    return '<h1>Request failed!</h1>'
+
 
 @app.route('/logout')
 def logout():
@@ -218,6 +238,9 @@ def forgot():
     if request.method == 'GET':
         return render_template('forms/forgot.html', form=form)
 
+@app.route('/chat',methods=['POST','GET'])
+def chat():
+    return render_template('pages/chat.html',contacts=User.query.filter(User.username!=session['username']).all())
 
 @app.route('/reset',methods=['POST','GET'])
 def reset():
@@ -234,6 +257,19 @@ def reset():
         return redirect(url_for('login'))
     else:
         return render_template('forms/reset.html')
+
+
+
+##################################
+@socketio.on('message')
+def handle_message(message):
+    print('Message: '+message)
+    send(message)
+
+
+
+
+
 ###################################
 # Error handlers.
 
@@ -263,7 +299,7 @@ if not app.debug:
 #----------------------------------------------------------------------------#
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app)
 
 # Or specify port manually:
 '''
