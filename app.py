@@ -240,7 +240,7 @@ def forgot():
 
 @app.route('/chat',methods=['POST','GET'])
 def chat():
-    return render_template('pages/chat.html',contacts=User.query.filter(User.username!=session['username']).all())
+    return render_template('pages/chat.html',users=User.query.filter(User.username!=session['username']).all())
 
 @app.route('/reset',methods=['POST','GET'])
 def reset():
