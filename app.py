@@ -47,6 +47,33 @@ app.register_blueprint(twitter_blueprint, url_prefix="/twitter_login")
 def home():
     return redirect(url_for('signin'))
 
+@app.route('/signup',methods=['POST','GET'])
+def signup():
+    # store hashed password and credentials for POST request
+    if request.method == 'POST': # if data is being POSTed
+        users = User.query.all()
+        for user in users: # looping through the users
+            if user.username == request.form['username']:# check if the entered username matches to avoid collisions
+                flash('Username already exists. Please pick another one')
+                return redirect(url_for('signup'))
+
+            elif len(request.form['password'])<8: # password length check
+                flash('Please provide a password which is atleast 8 characters long')
+                return redirect(url_for('signup'))
+
+            elif request.form['password']!=request.form['repeat_password']: # check passwords match
+                flash('Passwords mismatch. Please try again')
+                return redirect(url_for('signup'))
+ # if no exception, go here
+        hashed_password = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt(10)) # hashing the password with a salt
+        user_data= User(email=request.form['email'],username=request.form['username'],password=hashed_password.decode('utf-8'),display_picture="sqr.png")# storing the hashed password in the collection
+        user_data.save() # save
+
+        flash('Signup Success!') # flash messages
+        return redirect(url_for('signin'))
+    # render form for GET
+    return render_template('forms/SignUp.html')
+
 @app.route('/signin',methods=['POST','GET'])
 def signin():
     # check if hashes match and set session variables
@@ -60,33 +87,6 @@ def signin():
             return redirect(url_for('signin'))
     return render_template('forms/SignIn.html')
 
-
-@app.route('/signup',methods=['POST','GET'])
-def signup():
-    # store hashed password and credentials for POST request
-    if request.method == 'POST':
-        users = User.query.all()
-        for user in users:
-            if user.username == request.form['username']:
-                flash('Username already exists. Please pick another one')
-                return redirect(url_for('signup'))
-
-            elif len(request.form['password'])<8:
-                flash('Please provide a password which is atleast 8 characters long')
-                return redirect(url_for('signup'))
-
-            elif request.form['password']!=request.form['repeat_password']:
-                flash('Passwords mismatch. Please try again')
-                return redirect(url_for('signup'))
-
-        hashed_password = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt(10))
-        user_data= User(email=request.form['email'],username=request.form['username'],password=hashed_password.decode('utf-8'),display_picture="sqr.png")
-        user_data.save()
-
-        flash('Signup Success!')
-        return redirect(url_for('signin'))
-    # render form for GET
-    return render_template('forms/SignUp.html')
 
 @app.route('/twitter')
 def twitter_login():
