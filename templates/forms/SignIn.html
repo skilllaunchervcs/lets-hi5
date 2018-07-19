@@ -67,7 +67,7 @@
 				{% endif %}
 			{% endwith %}
 		</div>
-		<!--//flash-->	
+		<!--//flash-->
     <div class="card-body" style="text-align:center;">
         <h3 style="color:gray">Sign In</h3>
         <form action="{{ url_for('signin') }}" method="POST">
@@ -101,7 +101,7 @@
       <!-- Modal body -->
       <div class="modal-body">
         Let us help you recover your account!<br/>
-        Please enter your registered email id:<br/><br/><input type="email" name="recoveryEmail" placeholder="Enter Recovery Email" >
+				<a href="{{ url_for('forgot') }}">Follow this link to recover your account</a>
       </div>
 
       <!-- Modal footer -->

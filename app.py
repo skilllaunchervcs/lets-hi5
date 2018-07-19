@@ -35,6 +35,16 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 bootstrap = Bootstrap(app)
 app.config.from_object('config')
+app.config.update(dict(
+    DEBUG = True,
+    MAIL_SERVER = "smtp.gmail.com",
+    MAIL_PORT = 465,
+    MAIL_USE_TLS = False,
+    MAIL_USE_SSL = True,
+    MAIL_USERNAME = 'skilllauncher7@gmail.com',
+    MAIL_PASSWORD = 'skill7launcher'
+))
+mail = Mail(app)
 twitter_blueprint = make_twitter_blueprint(api_key='uQyFwItPPYK9EpXsurufWm52O', api_secret='lpe1StRf9QXhn8hsu2EQfh9KFwAd8hGMmZi7qHzpxZYfwSqh7Y')
 
 # file upload config
@@ -225,18 +235,18 @@ def forgot():
     if request.method == 'POST':
         users = User.query.all()
         for user in users:
-            if user.email == form.email.data:
-                msg = Message('Reset Password',sender='skilllauncher7@gmail.com',recipients=[form.email.data])
-                msg.html=render_template('pages/forgot_password.html',forgot_url=forgot_url, _external=True)
+            if user.email == request.form['email']:
+                msg = Message('Reset Password',sender='skilllauncher7@gmail.com',recipients=[request.form['email']])
+                msg.html = 'Greetings! Follow this link to reset your password'+forgot_url
                 mail.send(msg)
                 session.clear()
-                session['user_email'] = form.email.data
+                session['user_email'] = request.form['email']
                 flash('A reset confirmation e-mail has been sent to the specified email address')
                 return redirect(url_for('home'))
         flash('The provided mail is not a valid email address.')
         return redirect(url_for('forgot'))
     if request.method == 'GET':
-        return render_template('forms/forgot.html', form=form)
+        return render_template('forms/forgot.html')
 
 @app.route('/chat',methods=['POST','GET'])
 def chat():
@@ -252,10 +262,10 @@ def chat_interests():
 @app.route('/reset',methods=['POST','GET'])
 def reset():
     if request.method=='POST':
-        if form.password.data!=form.repeat_password.data:
+        if request.form['password']!=request.form['repeat_password']:
             flash('Passwords do not match')
             return redirect(url_for('reset'))
-        hashed_password_new = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt(10))
+        hashed_password_new = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt(10))
         data = User.query.filter_by(email=session['email']).first()
         data.password=hashed_password_new
         data.save()
