@@ -14,15 +14,15 @@ class User(db.Document):
     password = db.StringField()
     display_picture = db.StringField()
 
+class Chat(db.Document):
+    content = db.StringField()
+    date = db.DateTimeField()
+    user = db.StringField()
+    user_interest = db.StringField()
+
 class Posts(db.Document):
     username = db.StringField()
     caption = db.StringField()
     filename = db.StringField()
     category = db.StringField()
     date = db.DateTimeField()
-
-class Chat(db.Document):
-    content = db.StringField()
-    date = db.DateTimeField()
-    user = db.StringField()
-    user_interest = db.StringField()

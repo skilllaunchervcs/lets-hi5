@@ -269,11 +269,12 @@ def reset():
 
 ##################################
 @socketio.on('message')
-def handle_message(message):
-    print('Message: '+message)
-    send(message,broadcast=True)
-    message = Chat(message,datetime.datetime.now(),session['username'],session['interest_current'])
+def handle_message(msg):
+    print('Message: '+msg)
+    message = Chat(content=msg,date=datetime.datetime.utcnow(),user=session['username'],user_interest=session['interest_current'])
     message.save()
+    send(msg,broadcast=True)
+
 
 
 
